@@ -12,7 +12,7 @@ void
 activate(GtkApplication *app, 
                 gpointer user_data);
 
-int
-startUI(int argc, char **argv);
+void
+*startUI();
 
 #endif

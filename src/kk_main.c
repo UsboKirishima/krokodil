@@ -11,13 +11,17 @@ typedef struct config
 
 t_configs configs = {VERSION, DISCORD_TOKEN, GUILD_ID}; 
 
+void *client_init();
+void *startUI();
 
 int main(int argc,
          char **argv)
 {
-    int status = startUI(argc, argv);
-
-    client_init(configs.token, configs.guild_id);
-
-    return status;
+    pthread_t thread[2];
+    //starting the thread
+    pthread_create(&thread[0],NULL,client_init,NULL);
+    pthread_create(&thread[1],NULL,startUI,NULL);
+    //waiting for completion
+    pthread_join(thread[0],NULL);
+    pthread_join(thread[1],NULL);
 }

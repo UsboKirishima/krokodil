@@ -35,17 +35,15 @@ activate(GtkApplication *app,
     gtk_widget_show(window);
 }
 
-int
-startUI(int argc,
-        char **argv)
+void
+*startUI()
 {
     GtkApplication *app;
     int status;
 
     app = gtk_application_new("org.gtk.krokodil", G_APPLICATION_DEFAULT_FLAGS);
     g_signal_connect(app, "activate", G_CALLBACK(activate), NULL);
-    status = g_application_run(G_APPLICATION(app), argc, argv);
+    status = g_application_run(G_APPLICATION(app), NULL, NULL);
     g_object_unref(app);
 
-    return status;
 }
