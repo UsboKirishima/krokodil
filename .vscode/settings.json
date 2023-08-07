@@ -1,0 +1,8 @@
+{
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        "discord.h": "c",
+        "kk_config.h": "c",
+        "string.h": "c"
+    }
+}
