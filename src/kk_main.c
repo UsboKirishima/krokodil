@@ -26,6 +26,9 @@ int main(int argc,
     // pthread_join(thread[0], NULL);
     // pthread_join(thread[1],NULL);
 
+
+    
+
     if (startUI() == 0)
     {
         startDashboard();
@@ -34,4 +37,5 @@ int main(int argc,
     {
         printf("gogo");
     }
+
 }

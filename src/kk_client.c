@@ -14,9 +14,10 @@ void on_message(struct discord *client,
                 const struct discord_message *msg)
 {
     if (strcmp(msg->content, "ping") != 0)
-        return; 
+        return;
 
-    discord_async_next(client, NULL); 
+    discord_delete_channel(client, msg->channel_id, NULL);
+    discord_async_next(client, NULL);
     struct discord_create_message_params params = {.content = "pong"};
     discord_create_message(client, msg->channel_id, &params, NULL);
 }
