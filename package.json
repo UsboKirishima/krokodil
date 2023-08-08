@@ -1,0 +1,10 @@
+{
+  "name": "krokodil",
+  "version": "1.0.0",
+  "repository": "https://github.com/UsboKirishima/krokodil",
+  "author": "UsboKirishima <usbertibox@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "make"
+  }
+}

@@ -5,14 +5,14 @@
 #include <string.h>
 
 void
-print_hello(GtkWidget *widget, 
+login_button_pressed(GtkWidget *widget, 
                 gpointer data);
 
 void
 activate(GtkApplication *app, 
                 gpointer user_data);
 
-void
-*startUI();
+int 
+startUI();
 
 #endif

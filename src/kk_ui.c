@@ -1,9 +1,18 @@
 #include <kk_ui.h>
+#include <kk_dashboard.h>
+
+#define TOLOWER(ch)     (((ch) >= 'A' && (ch) <= 'Z') ? ((ch) - 'A' + 'a') : (ch))
+
+short login = 0; //0: Failed, 1: Success
 
 void login_button_pressed(GtkWidget *widget,
                           gpointer data)
 {
-    g_print(gtk_entry_get_text(data));
+    const char *key = gtk_entry_get_text(data);
+    if(key == "giallo") {
+        login = 1;
+    } 
+    g_print(key);
 }
 
 void activate(GtkApplication *app,
@@ -16,7 +25,7 @@ void activate(GtkApplication *app,
     GtkWidget *key_label;
 
     window = gtk_application_window_new(app);
-    gtk_window_set_title(GTK_WINDOW(window), "Window");
+    gtk_window_set_title(GTK_WINDOW(window), "Krokodil Login");
     gtk_window_set_default_size(GTK_WINDOW(window), 200, 200);
 
     box = gtk_button_box_new(GTK_ORIENTATION_VERTICAL);
@@ -24,9 +33,9 @@ void activate(GtkApplication *app,
     gtk_widget_set_valign(box, GTK_ALIGN_CENTER);
     gtk_container_add(GTK_CONTAINER(window), box);
 
-    key_label = gtk_label_new("Enter your key:");
+    key_label = gtk_label_new("ENTER YOUR KEY");
     gtk_container_add(GTK_CONTAINER(box), key_label);
-    gtk_widget_set_halign(key_label, GTK_ALIGN_START);
+    gtk_widget_set_halign(key_label, GTK_ALIGN_CENTER);
 
     key_box = gtk_entry_new();
     gtk_entry_set_max_length(GTK_ENTRY(key_box), 0);
@@ -44,7 +53,7 @@ void activate(GtkApplication *app,
     gtk_widget_show_all(window);
 }
 
-void *startUI()
+int startUI()
 {
     GtkApplication *app;
     int status;
@@ -53,4 +62,6 @@ void *startUI()
     g_signal_connect(app, "activate", G_CALLBACK(activate), NULL);
     status = g_application_run(G_APPLICATION(app), NULL, NULL);
     g_object_unref(app);
+
+    return login;
 }

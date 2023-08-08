@@ -4,5 +4,6 @@
         "discord.h": "c",
         "kk_config.h": "c",
         "string.h": "c"
-    }
+    },
+    "C_Cpp.dimInactiveRegions": false
 }
