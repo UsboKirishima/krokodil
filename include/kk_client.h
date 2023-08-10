@@ -3,6 +3,7 @@
 
 #include <string.h>
 #include <orca/discord.h>
+#include <inttypes.h>
 
 void on_ready(struct discord *client);
 

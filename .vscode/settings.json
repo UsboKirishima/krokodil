@@ -3,7 +3,9 @@
     "files.associations": {
         "discord.h": "c",
         "kk_config.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "chrono": "c",
+        "typeinfo": "c"
     },
     "C_Cpp.dimInactiveRegions": false
 }
