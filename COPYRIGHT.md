@@ -1,0 +1,1 @@
+<p>Copyright © Davide Usberti aka UsboKirishima & his contributors - 2023->∞</p>
