@@ -8,6 +8,21 @@ void on_ready(struct discord *client)
 {
     const struct discord_user *bot = discord_get_self(client);
     log_info("Logged in as %s!", bot->username);
+
+    discord_set_presence(client, &(struct discord_presence_status){
+                                     .activities =
+                                         (struct discord_activity *[]){
+                                             &(struct discord_activity){
+                                                 .name = "#KrokodilOnTop",
+                                                 .type = DISCORD_ACTIVITY_GAME,
+                                                 .details = "Nuking with style",
+                                             },
+                                             NULL
+                                         },
+                                     .status = "idle",
+                                     .afk = false,
+                                     .since = discord_timestamp(client),
+                                 });
 }
 
 void on_message(struct discord *client,
