@@ -1,9 +1,18 @@
 #include <kk_dashboard.h>
 #include <kk_css.h>
 
+typedef struct attack
+{
+    bool mass_channel;
+} t_attack;
+
+bool mass_channel_enabled = false;
+
+
 void start_button_pressed(GtkWidget *widget,
                           gpointer data)
 {
+    mass_channel_enabled = gtk_switch_get_state(data);
 }
 
 void activateDashboard(GtkApplication *app,
@@ -62,19 +71,19 @@ void activateDashboard(GtkApplication *app,
     g_object_set(mass_channel_type_combobox, "margin-right", 5, NULL);
     gtk_container_add(GTK_CONTAINER(box), mass_channel_type_combobox);
 
-    //button_start = gtk_button_new_with_label("START");
-    //gtk_container_add(GTK_CONTAINER(box), button_start);
-    //g_signal_connect(button_start, "clicked", G_CALLBACK(start_button_pressed), NULL);
-    // g_signal_connect_swapped(button_start, "clicked", G_CALLBACK(gtk_widget_destroy), window);
-    // gtk_widget_set_halign(button_start, GTK_ALIGN_END);
-    // gtk_widget_set_valign(button_start, GTK_ALIGN_END);
-    //gtk_widget_set_name(button_start, "button_start");
-    //g_object_set(button_start, "margin-right", 10, NULL);
-
     mass_channel_enable_switch = gtk_switch_new();
     gtk_switch_set_state(mass_channel_enable_switch, false);
     g_object_set(mass_channel_enable_switch, "margin-right", 10, NULL);
     gtk_container_add(GTK_CONTAINER(box), mass_channel_enable_switch);
+
+    button_start = gtk_button_new_with_label("START");
+    gtk_container_add(GTK_CONTAINER(box), button_start);
+    g_signal_connect(button_start, "clicked", G_CALLBACK(start_button_pressed), mass_channel_enable_switch);
+    // g_signal_connect_swapped(button_start, "clicked", G_CALLBACK(gtk_widget_destroy), window);
+    // gtk_widget_set_halign(button_start, GTK_ALIGN_END);
+    // gtk_widget_set_valign(button_start, GTK_ALIGN_END);
+    gtk_widget_set_name(button_start, "button_start");
+    g_object_set(button_start, "margin-right", 10, NULL);
 
     logs_box = gtk_button_box_new(GTK_ORIENTATION_HORIZONTAL);
     gtk_widget_set_halign(logs_box, GTK_ALIGN_START);
