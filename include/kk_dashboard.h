@@ -3,6 +3,7 @@
 
 #include <gtk/gtk.h>
 #include <string.h>
+#include <stdbool.h>
 
 void start_button_pressed(GtkWidget *widget,
                           gpointer data);

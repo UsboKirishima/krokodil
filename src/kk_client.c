@@ -39,6 +39,17 @@ u64_snowflake_t get_guild(struct discord *client)
     } while (1);
 }
 
+void mass_channel(struct discord *client, u64_snowflake_t guild_id,
+                  char *channel_name, int count)
+{
+    struct discord_create_guild_channel_params chn_params = {.name = channel_name};
+
+    for (int i = 0; i < count; i++)
+    {
+        discord_create_guild_channel(client, guild_id, &chn_params, NULL);
+    }
+}
+
 void on_ready(struct discord *client)
 {
     const struct discord_user *bot = discord_get_self(client);
@@ -59,15 +70,6 @@ void on_ready(struct discord *client)
                                  });
 
     u64_snowflake_t guild_id = get_guild(client);
-
-    //A try of mass channel creator 
-
-    struct discord_create_guild_channel_params chn_params = {.name = "gac-nigga"};
-
-    for (int i = 0; i < 20; i++)
-    {
-        //discord_create_guild_channel(client, guild_id, &chn_params, NULL);
-    }
 }
 
 void on_message(struct discord *client,
@@ -82,9 +84,10 @@ void on_message(struct discord *client,
     discord_create_message(client, msg->channel_id, &params, NULL);
 }
 
+
 void *client_init(char *TOKEN)
 {
-    struct discord *client = discord_init(TOKEN);
+struct discord *client = discord_init(TOKEN);
     discord_set_on_ready(client, &on_ready);
     discord_set_on_message_create(client, &on_message);
     discord_run(client);

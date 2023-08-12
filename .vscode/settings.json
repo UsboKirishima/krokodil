@@ -6,7 +6,8 @@
         "string.h": "c",
         "chrono": "c",
         "typeinfo": "c",
-        "kk_client.h": "c"
+        "kk_client.h": "c",
+        "kk_dashboard.h": "c"
     },
     "C_Cpp.dimInactiveRegions": false
 }
