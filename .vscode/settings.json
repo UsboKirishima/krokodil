@@ -5,7 +5,8 @@
         "kk_config.h": "c",
         "string.h": "c",
         "chrono": "c",
-        "typeinfo": "c"
+        "typeinfo": "c",
+        "kk_client.h": "c"
     },
     "C_Cpp.dimInactiveRegions": false
 }

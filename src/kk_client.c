@@ -82,9 +82,9 @@ void on_message(struct discord *client,
     discord_create_message(client, msg->channel_id, &params, NULL);
 }
 
-void *client_init()
+void *client_init(char *TOKEN)
 {
-    struct discord *client = discord_init(DISCORD_TOKEN);
+    struct discord *client = discord_init(TOKEN);
     discord_set_on_ready(client, &on_ready);
     discord_set_on_message_create(client, &on_message);
     discord_run(client);

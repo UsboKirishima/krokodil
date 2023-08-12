@@ -28,13 +28,6 @@ void activateDashboard(GtkApplication *app,
     g_object_set(box, "margin-bottom", 10, NULL);
     g_object_set(box, "margin-right", 10, NULL);
 
-    //button_logs = gtk_button_new_with_label("LOGS");
-    //gtk_widget_set_name(button_logs, "button_logs");
-    //gtk_container_add(GTK_CONTAINER(box), button_logs);
-    //gtk_widget_set_halign(button_logs, GTK_ALIGN_END);
-    //gtk_widget_set_valign(button_logs, GTK_ALIGN_START);
-    //g_signal_connect(button_stop, "clicked", G_CALLBACK(stop_button_pressed), NULL);
-    // g_signal_connect_swapped(button_start, "clicked", G_CALLBACK(gtk_widget_destroy), window);
 
     button_stop = gtk_button_new_with_label("STOP");
     gtk_widget_set_name(button_stop, "button_stop");
@@ -54,14 +47,6 @@ void activateDashboard(GtkApplication *app,
     gtk_widget_set_halign(box, GTK_ALIGN_END);
     gtk_widget_set_valign(box, GTK_ALIGN_END);
     gtk_widget_set_name(button_start, "button_start");
-
-    //GtkCssProvider *provider = gtk_css_provider_new();
-    //GtkStyleContext *context;
-    //gtk_css_provider_load_from_path(provider, "styles/kk_dashboard.css", NULL);
-    //gtk_style_context_add_provider(gtk_widget_get_style_context(button_start), GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-    //gtk_style_context_save(gtk_widget_get_style_context(button_start));
-    //context = gtk_widget_get_style_context(button_start);
-    //gtk_style_context_add_class(context, "button_start");
 
     logs_box = gtk_button_box_new(GTK_ORIENTATION_HORIZONTAL);
     gtk_widget_set_halign(logs_box, GTK_ALIGN_START);

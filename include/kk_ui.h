@@ -3,6 +3,8 @@
 
 #include <gtk/gtk.h>
 #include <string.h>
+#include <pthread.h>
+#include <stdio.h>
 
 void
 login_button_pressed(GtkWidget *widget, 
@@ -12,7 +14,7 @@ void
 activate(GtkApplication *app, 
                 gpointer user_data);
 
-int 
-startUI();
+char 
+*startUI();
 
 #endif

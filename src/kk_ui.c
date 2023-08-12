@@ -1,18 +1,22 @@
 #include <kk_ui.h>
 #include <kk_dashboard.h>
+#include <kk_client.h>
 
-#define TOLOWER(ch)     (((ch) >= 'A' && (ch) <= 'Z') ? ((ch) - 'A' + 'a') : (ch))
+#define TOLOWER(ch) (((ch) >= 'A' && (ch) <= 'Z') ? ((ch) - 'A' + 'a') : (ch))
 
-short login = 0; //0: Failed, 1: Success
+short login = 0; // 0: Failed, 1: Success
+void *client_init(char *TOKEN); //Def func
+char *key;
 
 void login_button_pressed(GtkWidget *widget,
                           gpointer data)
 {
-    const char *key = gtk_entry_get_text(data);
-    if(key == "giallo") {
-        login = 1;
-    } 
-    g_print(key);
+    key = gtk_entry_get_text(data); //Key: Discord Token
+
+    //pthread_t client_thread;
+    //pthread_create(&client_thread, NULL, client_init, key);
+    //pthread_join(client_thread, NULL);
+    return;
 }
 
 void activate(GtkApplication *app,
@@ -33,7 +37,7 @@ void activate(GtkApplication *app,
     gtk_widget_set_valign(box, GTK_ALIGN_CENTER);
     gtk_container_add(GTK_CONTAINER(window), box);
 
-    key_label = gtk_label_new("ENTER YOUR KEY");
+    key_label = gtk_label_new("ENTER YOUR TOKEN");
     gtk_container_add(GTK_CONTAINER(box), key_label);
     gtk_widget_set_halign(key_label, GTK_ALIGN_CENTER);
 
@@ -53,7 +57,7 @@ void activate(GtkApplication *app,
     gtk_widget_show_all(window);
 }
 
-int startUI()
+char *startUI()
 {
     GtkApplication *app;
     int status;
@@ -63,5 +67,5 @@ int startUI()
     status = g_application_run(G_APPLICATION(app), NULL, NULL);
     g_object_unref(app);
 
-    return login;
+    return key;
 }
