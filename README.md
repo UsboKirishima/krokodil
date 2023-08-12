@@ -1,2 +1,4 @@
-# krokodil
-The most advanced discord automation destroyer tool - Made by Nukers to Nukers
+<div align='center'>
+
+# Krokodil
+The most advanced discord server nuke tool
