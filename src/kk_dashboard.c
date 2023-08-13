@@ -1,20 +1,60 @@
 #include <kk_dashboard.h>
 #include <kk_css.h>
 #include <kk_client.h>
+#include <stdbool.h>
 
 #include "../config/token.h"
 
-typedef struct attack
-{
-    bool mass_channel;
-} t_attack;
+struct attack s_attack;
 
-bool mass_channel_enabled = false;
+struct attack s_attack = {
+    false,  // mass_channel_enabled
+    "NULL", // mass_channel_name
+    0,      // mass_channel_count
+    true,   // mass_channel_type
+    false,  // guild_name_enabled
+    "NULL"  // guild_name[20]
+};
+/**
+ * Callbacks
+ */
 
-void start_button_pressed(GtkWidget *widget,
-                          gpointer data)
+/**
+ * Module 1 (Callbacks)
+ * Mass Channel
+ */
+
+void mass_channel_enable_switched(GtkSwitch *widget,
+                                  gboolean state,
+                                  gpointer user_data)
 {
-    mass_channel_enabled = gtk_switch_get_state(data);
+    if (state == TRUE)
+    {
+        s_attack.mass_channel_enabled = true;
+    }
+    else
+    {
+        s_attack.mass_channel_enabled = false;
+    }
+    printf("\n\n\n%d", s_attack.mass_channel_enabled);
+}
+
+void mass_channel_entry_active(GtkWidget *widget, gpointer data)
+{
+    s_attack.mass_channel_name = (char *)gtk_entry_get_text(GTK_ENTRY(widget));
+}
+
+void mass_channel_count_change(GtkWidget *self,
+                               GtkScrollType *scroll,
+                               gpointer user_data)
+{
+    s_attack.mass_channel_count = (int )gtk_spin_button_get_value_as_int(self);
+}
+
+void *client_init(char *TOKEN);
+
+void start_button_pressed(GtkWidget *widget, gpointer data)
+{
 }
 
 void activateDashboard(GtkApplication *app,
@@ -27,7 +67,7 @@ void activateDashboard(GtkApplication *app,
     GtkWidget *button_stop;
     GtkWidget *button_logs;
 
-    //Mass channel widgets
+    // Mass channel widgets
     GtkWidget *mass_channel_box;
     GtkWidget *mass_channel_enable_switch;
     GtkWidget *mass_channel_label;
@@ -35,7 +75,7 @@ void activateDashboard(GtkApplication *app,
     GtkWidget *mass_channel_count_spin;
     GtkWidget *mass_channel_type_combobox;
 
-    //Guild name widgets
+    // Guild name widgets
     GtkWidget *guild_name_box;
     GtkWidget *guild_name_enable_switch;
     GtkWidget *guild_name_label;
@@ -58,7 +98,7 @@ void activateDashboard(GtkApplication *app,
      * Module 1
      * Mass Channel
      */
-    
+
     mass_channel_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_start(GTK_BOX(box), mass_channel_box, TRUE, TRUE, 0);
     gtk_widget_set_name(mass_channel_box, "mass_channel_box");
@@ -72,6 +112,7 @@ void activateDashboard(GtkApplication *app,
     gtk_container_add(GTK_CONTAINER(mass_channel_box), mass_channel_enable_switch);
     g_object_set(mass_channel_enable_switch, "margin-left", 10, NULL);
     g_object_set(mass_channel_enable_switch, "margin-right", 10, NULL);
+    g_signal_connect(mass_channel_enable_switch, "state-set", G_CALLBACK(mass_channel_enable_switched), NULL);
 
     mass_channel_label = gtk_label_new("MASS CHANNEL");
     gtk_container_add(GTK_CONTAINER(mass_channel_box), mass_channel_label);
@@ -81,11 +122,12 @@ void activateDashboard(GtkApplication *app,
     g_object_set(mass_channel_label, "margin-right", 10, NULL);
 
     mass_channel_name_entry = gtk_entry_new();
-    gtk_entry_set_max_length(GTK_ENTRY(mass_channel_name_entry), 0);
+    gtk_entry_set_max_length(GTK_ENTRY(mass_channel_name_entry), 15);
     gtk_container_add(GTK_CONTAINER(mass_channel_box), mass_channel_name_entry);
     g_object_set(mass_channel_name_entry, "margin-left", 10, NULL);
     g_object_set(mass_channel_name_entry, "margin-right", 10, NULL);
     gtk_entry_set_text(mass_channel_name_entry, "channel-name");
+    g_signal_connect(GTK_EDITABLE(mass_channel_name_entry), "changed", G_CALLBACK(mass_channel_entry_active), NULL);
 
     adj = (GtkAdjustment *)gtk_adjustment_new(1.0, 1.0, 200.0, 1.0,
                                               5.0, 0.0);
@@ -93,6 +135,7 @@ void activateDashboard(GtkApplication *app,
     gtk_container_add(GTK_CONTAINER(mass_channel_box), mass_channel_count_spin);
     g_object_set(mass_channel_count_spin, "margin-left", 10, NULL);
     g_object_set(mass_channel_count_spin, "margin-right", 10, NULL);
+    g_signal_connect(mass_channel_count_spin, "change-value", G_CALLBACK(mass_channel_count_change), NULL);
 
     mass_channel_type_combobox = gtk_combo_box_text_new();
     gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(mass_channel_type_combobox), NULL, "Text");
@@ -105,7 +148,7 @@ void activateDashboard(GtkApplication *app,
     /**
      * Module 2
      * Guild Name
-    */
+     */
 
     guild_name_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_start(GTK_BOX(box), guild_name_box, TRUE, TRUE, 0);
@@ -130,21 +173,19 @@ void activateDashboard(GtkApplication *app,
     g_object_set(guild_name_label, "margin-right", 20, NULL);
 
     guild_name_entry = gtk_entry_new();
-    gtk_entry_set_max_length(GTK_ENTRY(guild_name_entry), 0);
+    gtk_entry_set_max_length(GTK_ENTRY(guild_name_entry), 20);
     gtk_container_add(GTK_CONTAINER(guild_name_box), guild_name_entry);
     g_object_set(guild_name_entry, "margin-left", 10, NULL);
     g_object_set(guild_name_entry, "margin-right", 10, NULL);
     gtk_entry_set_text(guild_name_entry, "Nuked by Krokodil");
 
-
-    //button_start = gtk_button_new_with_label("START");
-    //gtk_container_add(GTK_CONTAINER(box), button_start);
-    //g_signal_connect(button_start, "clicked", G_CALLBACK(start_button_pressed), mass_channel_enable_switch);
-    // g_signal_connect_swapped(button_start, "clicked", G_CALLBACK(gtk_widget_destroy), window);
-    // gtk_widget_set_halign(button_start, GTK_ALIGN_END);
-    // gtk_widget_set_valign(button_start, GTK_ALIGN_END);
-    //gtk_widget_set_name(button_start, "button_start");
-
+    button_start = gtk_button_new_with_label("START");
+    gtk_container_add(GTK_CONTAINER(box), button_start);
+    g_signal_connect(button_start, "clicked", G_CALLBACK(start_button_pressed), mass_channel_enable_switch);
+    g_signal_connect_swapped(button_start, "clicked", G_CALLBACK(gtk_widget_destroy), window);
+    //  gtk_widget_set_halign(button_start, GTK_ALIGN_END);
+    //  gtk_widget_set_valign(button_start, GTK_ALIGN_END);
+    gtk_widget_set_name(button_start, "button_start");
 
     gtk_widget_show_all(window);
 }

