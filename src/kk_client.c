@@ -6,7 +6,6 @@
 #include <stdbool.h>
 #include <orca/discord.h>
 
-extern struct attack s_attack;
 
 u64_snowflake_t get_guild(struct discord *client)
 {

@@ -16,6 +16,8 @@ struct attack
     char guild_name[20];
 };
 
+extern struct attack s_attack;
+
 void mass_channel_enable_switched(GtkSwitch *widget,
                                   gboolean state,
                                   gpointer user_data);

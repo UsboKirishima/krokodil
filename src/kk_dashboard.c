@@ -9,8 +9,8 @@ struct attack s_attack;
 
 struct attack s_attack = {
     false,  // mass_channel_enabled
-    "NULL", // mass_channel_name
-    0,      // mass_channel_count
+    "fff", // mass_channel_name
+    10,      // mass_channel_count
     true,   // mass_channel_type
     false,  // guild_name_enabled
     "NULL"  // guild_name[20]
