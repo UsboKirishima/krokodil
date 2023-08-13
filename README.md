@@ -35,13 +35,24 @@ $ sudo pacman -S make #Arch Linux
 $ sudo apt install make #Ubuntu/Debian/Kali
 ```
 
-### 4. Install zenity
+### 4. Install gtk3
+```sh
+$ sudo pacman -S gtk3 #Arch Linux
+$ sudo apt install gtk3 #Ubuntu/Debian/Kali
+```
+
+### 5. Install Orca
+```
+Read https://github.com/cee-studio/orca-docs
+```
+
+### 6. Install zenity
 ```sh
 $ sudo pacman -S zenity #Arch Linux
 $ sudo apt-get install zenity #Ubuntu/debian/Kali
 ```
 
-### 5. Run program:
+### 7. Run program:
 ```sh
 make #Run without logs
 #Or
