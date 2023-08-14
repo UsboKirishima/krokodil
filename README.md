@@ -59,15 +59,13 @@ make #Run without logs
 make test #Run with logs
 ```
 
----
-
 <hr  style="border-radius: 2%; margin-top: 60px; margin-bottom: 60px;"  noshade=""  size="20"  width="100%">
 
 ### Screenshots
 
 <div align='center'>
 
-<img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://media.discordapp.net/attachments/1139913745871667232/1140310126075580516/image.png?width=817&height=464"></img>
+<img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://media.discordapp.net/attachments/1133087871415365637/1140623320870559744/image.png?width=817&height=464"></img>
 
 <img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://media.discordapp.net/attachments/1139913745871667232/1140309732163342447/image.png?width=817&height=464"></img>
 

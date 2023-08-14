@@ -17,3 +17,11 @@
 #guild_name_label {
     font-weight: bold;
 }
+
+#channel_delete_label {
+    font-weight: bold;
+}
+
+#dm_all_label {
+    font-weight: bold;
+}

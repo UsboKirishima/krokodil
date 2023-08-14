@@ -1,0 +1,58 @@
+#include <kk_dashboard.h>
+#include <kk_css.h>
+#include <kk_client.h>
+#include <stdbool.h>
+#include <kk_callbacks.h>
+
+#include "../config/token.h"
+
+struct attack s_attack;
+
+struct attack s_attack = {
+    false, // mass_channel_enabled
+    "fff", // mass_channel_name
+    10,    // mass_channel_count
+    true,  // mass_channel_type
+    false, // guild_name_enabled
+    "NULL" // guild_name[20]
+};
+/**
+ * Callbacks
+ */
+
+/**
+ * Module 1 (Callbacks)
+ * Mass Channel
+ */
+
+void mass_channel_enable_switched(GtkSwitch *widget,
+                                  gboolean state,
+                                  gpointer user_data)
+{
+    if (state == TRUE)
+    {
+        s_attack.mass_channel_enabled = true;
+    }
+    else
+    {
+        s_attack.mass_channel_enabled = false;
+    }
+}
+
+void mass_channel_entry_active(GtkWidget *widget, gpointer data)
+{
+    s_attack.mass_channel_name = (char *)gtk_entry_get_text(GTK_ENTRY(widget));
+}
+
+void mass_channel_count_change(GtkWidget *self,
+                               GtkScrollType *scroll,
+                               gpointer user_data)
+{
+    s_attack.mass_channel_count = (int)gtk_spin_button_get_value_as_int(self);
+}
+
+void *client_init(char *TOKEN);
+
+void start_button_pressed(GtkWidget *widget, gpointer data)
+{
+}

@@ -5,18 +5,7 @@
 #include <string.h>
 #include <stdbool.h>
 
-struct attack
-{
-    bool mass_channel_enabled;
-    char *mass_channel_name;
-    int mass_channel_count;
-    bool mass_channel_type; // true: text :: false: voice
 
-    bool guild_name_enabled;
-    char guild_name[20];
-};
-
-extern struct attack s_attack;
 
 void mass_channel_enable_switched(GtkSwitch *widget,
                                   gboolean state,
