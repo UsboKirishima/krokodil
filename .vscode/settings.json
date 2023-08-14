@@ -8,7 +8,8 @@
         "typeinfo": "c",
         "kk_client.h": "c",
         "kk_dashboard.h": "c",
-        "token.h": "c"
+        "token.h": "c",
+        "kk_callbacks.h": "c"
     },
     "C_Cpp.dimInactiveRegions": false
 }

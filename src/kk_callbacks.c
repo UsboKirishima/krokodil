@@ -10,11 +10,11 @@ struct attack s_attack;
 
 struct attack s_attack = {
     false, // mass_channel_enabled
-    "fff", // mass_channel_name
-    10,    // mass_channel_count
+    "channel-name", // mass_channel_name
+    2,    // mass_channel_count
     true,  // mass_channel_type
     false, // guild_name_enabled
-    "NULL" // guild_name
+    "Nuked by Krokodil" // guild_name
 };
 /**
  * Callbacks
@@ -41,7 +41,7 @@ void mass_channel_enable_switched(GtkSwitch *widget,
 
 void mass_channel_entry_active(GtkWidget *widget, gpointer data)
 {
-    s_attack.mass_channel_name = (char *)gtk_entry_get_text(GTK_ENTRY(widget));
+    s_attack.mass_channel_name = gtk_entry_get_text(GTK_ENTRY(widget));
 }
 
 void mass_channel_count_change(GtkWidget *self,
