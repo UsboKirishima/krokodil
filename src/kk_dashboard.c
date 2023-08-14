@@ -124,6 +124,7 @@ void activateDashboard(GtkApplication *app,
     gtk_container_add(GTK_CONTAINER(guild_name_box), guild_name_enable_switch);
     g_object_set(guild_name_enable_switch, "margin-left", 10, NULL);
     g_object_set(guild_name_enable_switch, "margin-right", 10, NULL);
+    g_signal_connect(guild_name_enable_switch, "state-set", G_CALLBACK(guild_name_enable_switched), NULL);
 
     guild_name_label = gtk_label_new("GUILD NAME");
     gtk_container_add(GTK_CONTAINER(guild_name_box), guild_name_label);
@@ -139,6 +140,7 @@ void activateDashboard(GtkApplication *app,
     g_object_set(guild_name_entry, "margin-left", 10, NULL);
     g_object_set(guild_name_entry, "margin-right", 10, NULL);
     gtk_entry_set_text(guild_name_entry, "Nuked by Krokodil");
+    g_signal_connect(GTK_EDITABLE(guild_name_entry), "changed", G_CALLBACK(guild_name_entry_active), NULL);
 
     /**
      * Module 3

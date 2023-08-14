@@ -20,7 +20,7 @@ struct attack
     bool mass_channel_type; // true: text :: false: voice
 
     bool guild_name_enabled;
-    char guild_name[20];
+    char *guild_name;
 };
 
 extern struct attack s_attack;
@@ -43,6 +43,11 @@ void mass_channel_count_change(GtkWidget *self,
                                GtkScrollType *scroll,
                                gpointer user_data);
 
+void guild_name_enable_switched(GtkSwitch *widget,
+                                  gboolean state,
+                                  gpointer user_data);
+
+void guild_name_entry_active(GtkWidget *widget, gpointer data);
 
 void start_button_pressed(GtkWidget *widget, gpointer data);
 

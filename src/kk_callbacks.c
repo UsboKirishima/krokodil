@@ -14,7 +14,7 @@ struct attack s_attack = {
     10,    // mass_channel_count
     true,  // mass_channel_type
     false, // guild_name_enabled
-    "NULL" // guild_name[20]
+    "NULL" // guild_name
 };
 /**
  * Callbacks
@@ -49,6 +49,24 @@ void mass_channel_count_change(GtkWidget *self,
                                gpointer user_data)
 {
     s_attack.mass_channel_count = (int)gtk_spin_button_get_value_as_int(self);
+}
+
+void guild_name_enable_switched(GtkSwitch *widget,
+                                gboolean state,
+                                gpointer user_data)
+{
+    if (state == TRUE)
+    {
+        s_attack.guild_name_enabled = true;
+    }
+    else
+    {
+        s_attack.guild_name_enabled = false;
+    }
+}
+void guild_name_entry_active(GtkWidget *widget, gpointer data)
+{
+    s_attack.guild_name = (char *)gtk_entry_get_text(GTK_ENTRY(widget));
 }
 
 void *client_init(char *TOKEN);

