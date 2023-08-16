@@ -8,3 +8,6 @@ out.o:
 
 test: 
 	gcc ${SRC} -I include ${INCLUDES} ${DIRS} -o build/krokodil -pthread -ldiscord -lcurl ${LIBS} && ./build/krokodil
+
+install: 
+	chmod +x INSTALL && sudo sh INSTALL
