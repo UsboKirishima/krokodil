@@ -33,15 +33,22 @@ void start_button_pressed(GtkWidget *widget, gpointer data)
     if (gtk_switch_get_state(w->mass_channel_enable_switch) == TRUE)
     {
         s_attack.mass_channel_enabled = true;
-        g_print("\n\nSI");
     }
     else
     {
         s_attack.mass_channel_enabled = false;
-        g_print("\n\nNOPE");
     }
-    printf("\n\nNEGRO: %s",  gtk_entry_get_text((GtkEntry *)w->mass_channel_name_entry));
+
     char *mass_channel_name = gtk_entry_get_text((GtkEntry *)w->mass_channel_name_entry);
     strcpy(s_attack.mass_channel_name, mass_channel_name);
     
+    s_attack.mass_channel_count = gtk_spin_button_get_value_as_int(w->mass_channel_count_spin);
+
+    char *mass_c_type = gtk_combo_box_text_get_active_text(w->mass_channel_type_combobox);
+
+    if(mass_c_type == "Text") {
+        s_attack.mass_channel_type = 0;
+    } else if(mass_c_type == "Voice") {
+        s_attack.mass_channel_type = 2;
+    }
 }
