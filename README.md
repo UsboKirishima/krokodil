@@ -17,7 +17,26 @@
 
 ## Installation
 
-### 1. Get the repo:
+### 1. Get the repo
+
+```sh
+$ git clone https://github.com/UsboKirishima/krokodil
+```
+
+### 2. Run setup
+
+```sh
+$ sudo make install
+```
+
+### 3. Run Krokodil
+```sh
+$ make
+```
+
+## Manual Installation
+
+### 1. Get the repo
 
 ```sh
 $ git clone https://github.com/UsboKirishima/krokodil
