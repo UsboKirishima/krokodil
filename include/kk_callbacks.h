@@ -15,12 +15,12 @@
 struct attack
 {
     bool mass_channel_enabled;
-    char *mass_channel_name;
+    char mass_channel_name[15];
     int mass_channel_count;
     bool mass_channel_type; // true: text :: false: voice
 
     bool guild_name_enabled;
-    char *guild_name;
+    char guild_name[15];
 };
 
 extern struct attack s_attack;
