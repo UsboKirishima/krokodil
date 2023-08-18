@@ -134,7 +134,7 @@ void activateDashboard(GtkApplication *app,
     g_object_set(widgets.dm_all_label, "margin-right", 40, NULL);
 
     widgets.dm_all_entry = gtk_entry_new();
-    gtk_entry_set_max_length(GTK_ENTRY(widgets.dm_all_entry), 20);
+    gtk_entry_set_max_length(GTK_ENTRY(widgets.dm_all_entry), 2000);
     gtk_container_add(GTK_CONTAINER(widgets.dm_all_box), widgets.dm_all_entry);
     g_object_set(widgets.dm_all_entry, "margin-left", 10, NULL);
     g_object_set(widgets.dm_all_entry, "margin-right", 10, NULL);

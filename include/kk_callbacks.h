@@ -17,10 +17,15 @@ struct attack
     bool mass_channel_enabled;
     char mass_channel_name[15];
     int mass_channel_count;
-    int mass_channel_type; // true: text :: false: voice
+    int mass_channel_type; 
 
     bool guild_name_enabled;
     char guild_name[15];
+
+    bool dm_all_enabled;
+    char dm_message[2000];
+
+    bool channel_delete_all;
 };
 
 extern struct attack s_attack;

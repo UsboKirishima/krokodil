@@ -13,6 +13,7 @@
 
 - Mass Channel Creator
 - Guild info changer
+- Dm all
 - All channels deleter
 
 ## Installation
@@ -62,7 +63,7 @@ $ sudo apt install gtk3 #Ubuntu/Debian/Kali
 
 ### 5. Install Orca
 ```
-Read https://github.com/cee-studio/orca-docs
+Read https://github.com/cee-studio/orca
 ```
 
 ### 6. Install zenity
