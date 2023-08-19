@@ -2,6 +2,7 @@
 #include <kk_config.h>
 #include <kk_dashboard.h>
 #include <kk_callbacks.h>
+#include <kk_ui.h>
 
 #include <string.h>
 #include <stdbool.h>

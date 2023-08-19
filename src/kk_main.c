@@ -5,14 +5,6 @@
 
 #include "../config/token.h"
 
-typedef struct config
-{
-    char *version;
-    char *token;
-    char *guild_id;
-} t_configs;
-
-t_configs configs = {VERSION, DISCORD_TOKEN, GUILD_ID};
 
 void *client_init(char *token);
 char *startUI();
@@ -24,16 +16,8 @@ int main(int argc,
     FILE *token;
     char *_token;
 
-    token = popen("chmod +x scripts/token.sh && sh scripts/token.sh", "r");
+    //token = popen("chmod +x scripts/token.sh && sh scripts/token.sh", "r");
 
-    if (token == NULL)
-    {
-        perror("Pipe returned a error");
-    }
-    else
-    {
-        printf("Exit code: %i\n", WEXITSTATUS(pclose(token)));
-    }
     pthread_t threads[2];
 
 
@@ -43,6 +27,7 @@ int main(int argc,
     //pthread_join(threads[0], NULL);
     //pthread_join(threads[1], NULL);
 
+    startUI();
     startDashboard();
-    client_init(DS_TOKEN);
+    client_init(t_configs.token);
 }

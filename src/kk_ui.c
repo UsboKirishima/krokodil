@@ -1,17 +1,21 @@
 #include <kk_ui.h>
 #include <kk_dashboard.h>
 #include <kk_client.h>
+#include <kk_main.h>
+#include <string.h>
 
 #define TOLOWER(ch) (((ch) >= 'A' && (ch) <= 'Z') ? ((ch) - 'A' + 'a') : (ch))
 
+struct config t_configs;
+
 short login = 0; // 0: Failed, 1: Success
 void *client_init(char *TOKEN); //Def func
-char *key;
 
 void login_button_pressed(GtkWidget *widget,
                           gpointer data)
 {
-    key = gtk_entry_get_text(data); //Key: Discord Token
+    char *t = (GtkEntry *)gtk_entry_get_text(data);
+    strcpy(t_configs.token, t);
 
     //pthread_t client_thread;
     //pthread_create(&client_thread, NULL, client_init, key);
@@ -29,17 +33,20 @@ void activate(GtkApplication *app,
     GtkWidget *key_label;
 
     window = gtk_application_window_new(app);
-    gtk_window_set_title(GTK_WINDOW(window), "Krokodil Login");
-    gtk_window_set_default_size(GTK_WINDOW(window), 200, 200);
+    gtk_window_set_title(GTK_WINDOW(window), "Krokodil");
+    gtk_window_set_default_size(GTK_WINDOW(window), 400, 100);
+    gtk_window_set_resizable(GTK_WINDOW(window), FALSE);
 
-    box = gtk_button_box_new(GTK_ORIENTATION_VERTICAL);
-    gtk_widget_set_halign(box, GTK_ALIGN_CENTER);
-    gtk_widget_set_valign(box, GTK_ALIGN_CENTER);
+    box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add(GTK_CONTAINER(window), box);
+    g_object_set(box, "margin-top", 20, NULL);
+    g_object_set(box, "margin-bottom", 20, NULL);
+    g_object_set(box, "margin-left", 20, NULL);
+    g_object_set(box, "margin-right", 20, NULL);
 
-    key_label = gtk_label_new("ENTER YOUR TOKEN");
+    key_label = gtk_label_new("Enter your token:");
     gtk_container_add(GTK_CONTAINER(box), key_label);
-    gtk_widget_set_halign(key_label, GTK_ALIGN_CENTER);
+    gtk_widget_set_halign(key_label, GTK_ALIGN_START);
 
     key_box = gtk_entry_new();
     gtk_entry_set_max_length(GTK_ENTRY(key_box), 0);
@@ -67,5 +74,4 @@ char *startUI()
     status = g_application_run(G_APPLICATION(app), NULL, NULL);
     g_object_unref(app);
 
-    return key;
 }
