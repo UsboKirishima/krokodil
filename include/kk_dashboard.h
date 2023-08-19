@@ -15,7 +15,18 @@ struct dashboardWidgets
     GtkWidget *button_stop;
     GtkWidget *button_logs;
     GtkWidget *sidebar;
-    GtkWidget *stack1;
+
+    //Stacks
+    GtkWidget *stack1; //channels stack
+    GtkWidget *users_stack; 
+    GtkWidget *roles_stack; 
+    GtkWidget *server_stack; 
+
+    //Boxes
+    GtkWidget *channels_box;
+    GtkWidget *users_box;
+    GtkWidget *roles_box;
+    GtkWidget *server_box;
 
     // Mass channel widgets
     GtkWidget *mass_channel_box;

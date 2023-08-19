@@ -17,6 +17,7 @@ void activateDashboard(GtkApplication *app,
     widgets.window = gtk_application_window_new(app);
     gtk_window_set_title(GTK_WINDOW(widgets.window), "Krokodil");
     gtk_window_set_default_size(GTK_WINDOW(widgets.window), 900, 500);
+    gtk_window_set_resizable(GTK_WINDOW(widgets.window), FALSE);
 
     GtkWidget *fixed = gtk_fixed_new();
     gtk_widget_set_name(fixed, "fixed");
@@ -33,8 +34,9 @@ void activateDashboard(GtkApplication *app,
     gtk_widget_set_name(widgets.stack1, "stack1");
     gtk_widget_set_size_request(widgets.stack1, 550, 500);
     gtk_fixed_put(GTK_FIXED(fixed), widgets.stack1, 150, 0);
-
     gtk_stack_sidebar_set_stack(GTK_STACK_SIDEBAR(widgets.sidebar), GTK_STACK(widgets.stack1));
+
+
 
     // Switcher
     GtkWidget *switcher = gtk_stack_switcher_new();
@@ -46,6 +48,22 @@ void activateDashboard(GtkApplication *app,
     gtk_widget_set_halign(widgets.box, GTK_ALIGN_START);
     gtk_widget_set_valign(widgets.box, GTK_ALIGN_START);
     gtk_stack_add_titled(GTK_STACK(widgets.stack1), GTK_WIDGET(widgets.box), "channels", "Channels");
+
+    widgets.users_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+    gtk_widget_set_halign(widgets.users_box, GTK_ALIGN_START);
+    gtk_widget_set_valign(widgets.users_box, GTK_ALIGN_START);
+    gtk_stack_add_titled(GTK_STACK(widgets.stack1), GTK_WIDGET(widgets.users_box), "users", "Users");
+
+    widgets.roles_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+    gtk_widget_set_halign(widgets.roles_box, GTK_ALIGN_START);
+    gtk_widget_set_valign(widgets.roles_box, GTK_ALIGN_START);
+    gtk_stack_add_titled(GTK_STACK(widgets.stack1), GTK_WIDGET(widgets.roles_box), "roles", "Roles");
+
+    widgets.server_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+    gtk_widget_set_halign(widgets.server_box, GTK_ALIGN_START);
+    gtk_widget_set_valign(widgets.server_box, GTK_ALIGN_START);
+    gtk_stack_add_titled(GTK_STACK(widgets.stack1), GTK_WIDGET(widgets.server_box), "server", "Server");
+
 
     /**
      * Module 1
@@ -101,7 +119,7 @@ void activateDashboard(GtkApplication *app,
      */
 
     widgets.guild_name_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_box_pack_start(GTK_BOX(widgets.box), widgets.guild_name_box, TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(widgets.server_box), widgets.guild_name_box, TRUE, TRUE, 0);
     gtk_widget_set_name(widgets.guild_name_box, "guild_name_box");
     g_object_set(widgets.guild_name_box, "margin-top", 10, NULL);
     g_object_set(widgets.guild_name_box, "margin-left", 10, NULL);
@@ -135,7 +153,7 @@ void activateDashboard(GtkApplication *app,
      */
 
     widgets.dm_all_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_box_pack_start(GTK_BOX(widgets.box), widgets.dm_all_box, TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(widgets.users_box), widgets.dm_all_box, TRUE, TRUE, 0);
     gtk_widget_set_name(widgets.dm_all_box, "dm_all_box");
     g_object_set(widgets.dm_all_box, "margin-top", 10, NULL);
     g_object_set(widgets.dm_all_box, "margin-left", 10, NULL);
