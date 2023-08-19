@@ -12,17 +12,40 @@ void activateDashboard(GtkApplication *app,
                        gpointer user_data)
 {
 
-
     gtk_css();
 
     widgets.window = gtk_application_window_new(app);
     gtk_window_set_title(GTK_WINDOW(widgets.window), "Krokodil");
     gtk_window_set_default_size(GTK_WINDOW(widgets.window), 900, 500);
 
+    GtkWidget *fixed = gtk_fixed_new();
+    gtk_widget_set_name(fixed, "fixed");
+    gtk_container_add(GTK_CONTAINER(widgets.window), fixed);
+
+    // Sidebar
+    widgets.sidebar = gtk_stack_sidebar_new();
+    gtk_widget_set_name(widgets.sidebar, "sidebar");
+    gtk_fixed_put(GTK_FIXED(fixed), widgets.sidebar, 0, 0);
+    gtk_widget_set_size_request(widgets.sidebar, 150, 550);
+
+    // Stack
+    widgets.stack1 = gtk_stack_new();
+    gtk_widget_set_name(widgets.stack1, "stack1");
+    gtk_widget_set_size_request(widgets.stack1, 550, 500);
+    gtk_fixed_put(GTK_FIXED(fixed), widgets.stack1, 150, 0);
+
+    gtk_stack_sidebar_set_stack(GTK_STACK_SIDEBAR(widgets.sidebar), GTK_STACK(widgets.stack1));
+
+    // Switcher
+    GtkWidget *switcher = gtk_stack_switcher_new();
+    gtk_widget_set_name(switcher, "switcher");
+    gtk_stack_switcher_set_stack(GTK_STACK_SWITCHER(switcher), GTK_STACK(widgets.stack1));
+
+
     widgets.box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-    gtk_container_add(GTK_CONTAINER(widgets.window), widgets.box);
     gtk_widget_set_halign(widgets.box, GTK_ALIGN_START);
     gtk_widget_set_valign(widgets.box, GTK_ALIGN_START);
+    gtk_stack_add_titled(GTK_STACK(widgets.stack1), GTK_WIDGET(widgets.box), "channels", "Channels");
 
     /**
      * Module 1
@@ -58,7 +81,7 @@ void activateDashboard(GtkApplication *app,
     gtk_entry_set_text(widgets.mass_channel_name_entry, "channel-name");
 
     widgets.adj = (GtkAdjustment *)gtk_adjustment_new(1.0, 1.0, 200.0, 1.0,
-                                                               5.0, 0.0);
+                                                      5.0, 0.0);
     widgets.mass_channel_count_spin = gtk_spin_button_new(widgets.adj, 0, 0);
     gtk_container_add(GTK_CONTAINER(widgets.mass_channel_box), widgets.mass_channel_count_spin);
     g_object_set(widgets.mass_channel_count_spin, "margin-left", 10, NULL);
