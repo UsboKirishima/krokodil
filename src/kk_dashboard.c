@@ -235,12 +235,12 @@ void activateDashboard(GtkApplication *app,
      * Start Button
      */
 
-    //widgets.button_start = gtk_button_new_with_label("START");
-    //gtk_container_add(GTK_CONTAINER(widgets.box), widgets.button_start);
-    //g_signal_connect(widgets.button_start, "clicked", G_CALLBACK(start_button_pressed), &widgets);
-    //g_signal_connect_swapped(widgets.button_start, "clicked", G_CALLBACK(gtk_widget_destroy), widgets.window);
-    //gtk_widget_set_valign(widgets.button_start, GTK_ALIGN_END);
-    //gtk_widget_set_name(widgets.button_start, "button_start");
+    widgets.button_start = gtk_button_new_with_label("START");
+    gtk_container_add(GTK_CONTAINER(widgets.box), widgets.button_start);
+    g_signal_connect(widgets.button_start, "clicked", G_CALLBACK(start_button_pressed), &widgets);
+    g_signal_connect_swapped(widgets.button_start, "clicked", G_CALLBACK(gtk_widget_destroy), widgets.window);
+    gtk_widget_set_valign(widgets.button_start, GTK_ALIGN_END);
+    gtk_widget_set_name(widgets.button_start, "button_start");
 
     gtk_widget_show_all(widgets.window);
 }
