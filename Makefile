@@ -11,3 +11,9 @@ test:
 
 install: 
 	chmod +x INSTALL && sudo sh INSTALL
+
+win: 
+	gcc ${SRC} -I include ${INCLUDES} ${DIRS} -o build/krokodil.exe -pthread -ldiscord -lcurl ${LIBS} 2> /dev/null && wine ./build/krokodil.exe
+
+w: 
+	mcs rpc/prog.cs && mono rpc/prog.exe
