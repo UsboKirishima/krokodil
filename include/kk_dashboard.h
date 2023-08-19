@@ -53,6 +53,12 @@ struct dashboardWidgets
     GtkWidget *channel_delete_enable_switch;
     GtkWidget *channel_delete_label;
     GtkAdjustment *adj;
+
+    //Rename all channels
+    GtkWidget *rename_channel_box;
+    GtkWidget *rename_channel_enable_switch;
+    GtkWidget *rename_channel_label;
+    GtkWidget *rename_channel_entry;
 };
 
 

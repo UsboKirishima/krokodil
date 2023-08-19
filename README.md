@@ -85,10 +85,12 @@ make test #Run with logs
 
 <div align='center'>
 
-<img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://media.discordapp.net/attachments/1133087871415365637/1140623320870559744/image.png?width=817&height=464"></img>
+<img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://media.discordapp.net/attachments/1133087871415365637/1142388454735482920/image.png?width=817&height=464"></img>
 
-<img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://media.discordapp.net/attachments/1139913745871667232/1140309732163342447/image.png?width=817&height=464"></img>
+<img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://media.discordapp.net/attachments/1133087871415365637/1142387932267814912/image.png?width=817&height=464"></img>
 
-<img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://media.discordapp.net/attachments/1139913745871667232/1140310402085953646/login_screen.png?width=817&height=464"></img>
+<img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://media.discordapp.net/attachments/1133087871415365637/1142388791026405386/image.png?width=817&height=464"></img>
+
+<img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://media.discordapp.net/attachments/1133087871415365637/1142389083293888582/image.png?width=817&height=464"></img>
 
 </div>

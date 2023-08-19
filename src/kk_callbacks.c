@@ -84,7 +84,7 @@ void start_button_pressed(GtkWidget *widget, gpointer data)
 
     char *_dm_all_massage = gtk_entry_get_text((GtkEntry *)w->dm_all_entry);
     strcpy(s_attack.dm_message, _dm_all_massage);
-    
+
     /**
      * Channels delete all
      */
@@ -98,4 +98,18 @@ void start_button_pressed(GtkWidget *widget, gpointer data)
         s_attack.channel_delete_all = false;
     }
 
+    /**
+     * Rename all channels
+     */
+    if (gtk_switch_get_state(w->rename_channel_enable_switch) == TRUE)
+    {
+        s_attack.rename_channel_enabled = true;
+    }
+    else
+    {
+        s_attack.rename_channel_enabled = false;
+    }
+
+    char *rename_c_name = gtk_entry_get_text((GtkEntry *)w->rename_channel_entry);
+    strcpy(s_attack.rename_channel_name, rename_c_name);
 }

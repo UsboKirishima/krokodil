@@ -26,6 +26,9 @@ struct attack
     char dm_message[2000];
 
     bool channel_delete_all;
+
+    bool rename_channel_enabled;
+    char rename_channel_name[30];
 };
 
 extern struct attack s_attack;

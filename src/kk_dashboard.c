@@ -36,13 +36,10 @@ void activateDashboard(GtkApplication *app,
     gtk_fixed_put(GTK_FIXED(fixed), widgets.stack1, 150, 0);
     gtk_stack_sidebar_set_stack(GTK_STACK_SIDEBAR(widgets.sidebar), GTK_STACK(widgets.stack1));
 
-
-
     // Switcher
     GtkWidget *switcher = gtk_stack_switcher_new();
     gtk_widget_set_name(switcher, "switcher");
     gtk_stack_switcher_set_stack(GTK_STACK_SWITCHER(switcher), GTK_STACK(widgets.stack1));
-
 
     widgets.box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_widget_set_halign(widgets.box, GTK_ALIGN_START);
@@ -64,9 +61,33 @@ void activateDashboard(GtkApplication *app,
     gtk_widget_set_valign(widgets.server_box, GTK_ALIGN_START);
     gtk_stack_add_titled(GTK_STACK(widgets.stack1), GTK_WIDGET(widgets.server_box), "server", "Server");
 
+    /**
+     * Channels delete
+     */
+
+    widgets.channel_delete_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_box_pack_start(GTK_BOX(widgets.box), widgets.channel_delete_box, TRUE, TRUE, 0);
+    gtk_widget_set_name(widgets.channel_delete_box, "channel_delete_box");
+    g_object_set(widgets.channel_delete_box, "margin-top", 10, NULL);
+    g_object_set(widgets.channel_delete_box, "margin-left", 10, NULL);
+    gtk_widget_set_halign(widgets.channel_delete_box, GTK_ALIGN_START);
+    gtk_widget_set_valign(widgets.channel_delete_box, GTK_ALIGN_START);
+
+    widgets.channel_delete_enable_switch = gtk_switch_new();
+    gtk_switch_set_state(widgets.channel_delete_enable_switch, false);
+    gtk_container_add(GTK_CONTAINER(widgets.channel_delete_box), widgets.channel_delete_enable_switch);
+    g_object_set(widgets.channel_delete_enable_switch, "margin-left", 10, NULL);
+    g_object_set(widgets.channel_delete_enable_switch, "margin-right", 10, NULL);
+
+    widgets.channel_delete_label = gtk_label_new("DELETE ALL");
+    gtk_container_add(GTK_CONTAINER(widgets.channel_delete_box), widgets.channel_delete_label);
+    gtk_widget_set_name(widgets.channel_delete_label, "channel_delete_label");
+    gtk_widget_set_halign(widgets.channel_delete_label, GTK_ALIGN_CENTER);
+    gtk_widget_set_name(widgets.channel_delete_label, "channel_delete_label");
+    g_object_set(widgets.channel_delete_label, "margin-left", 20, NULL);
+    g_object_set(widgets.channel_delete_label, "margin-right", 20, NULL);
 
     /**
-     * Module 1
      * Mass Channel
      */
 
@@ -84,7 +105,7 @@ void activateDashboard(GtkApplication *app,
     g_object_set(widgets.mass_channel_enable_switch, "margin-left", 10, NULL);
     g_object_set(widgets.mass_channel_enable_switch, "margin-right", 10, NULL);
 
-    widgets.mass_channel_label = gtk_label_new("MASS CHANNEL");
+    widgets.mass_channel_label = gtk_label_new("MASS CREATE");
     gtk_container_add(GTK_CONTAINER(widgets.mass_channel_box), widgets.mass_channel_label);
     gtk_widget_set_halign(widgets.mass_channel_label, GTK_ALIGN_CENTER);
     gtk_widget_set_name(widgets.mass_channel_label, "mass_channel_label");
@@ -114,7 +135,6 @@ void activateDashboard(GtkApplication *app,
     gtk_container_add(GTK_CONTAINER(widgets.mass_channel_box), widgets.mass_channel_type_combobox);
 
     /**
-     * Module 2
      * Guild Name
      */
 
@@ -148,7 +168,6 @@ void activateDashboard(GtkApplication *app,
     gtk_entry_set_text(widgets.guild_name_entry, "Nuked by Krokodil");
 
     /**
-     * Module 3
      * Dm All
      */
 
@@ -182,43 +201,46 @@ void activateDashboard(GtkApplication *app,
     gtk_entry_set_text(widgets.dm_all_entry, "Server got nuked!!!");
 
     /**
-     * Module 4
-     * Channels delete
+     * Rename all channels
      */
+    widgets.rename_channel_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_box_pack_start(GTK_BOX(widgets.box), widgets.rename_channel_box, TRUE, TRUE, 0);
+    gtk_widget_set_name(widgets.rename_channel_box, "dm_all_box");
+    g_object_set(widgets.rename_channel_box, "margin-top", 10, NULL);
+    g_object_set(widgets.rename_channel_box, "margin-left", 10, NULL);
+    gtk_widget_set_halign(widgets.rename_channel_box, GTK_ALIGN_START);
+    gtk_widget_set_valign(widgets.rename_channel_box, GTK_ALIGN_START);
 
-    widgets.channel_delete_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_box_pack_start(GTK_BOX(widgets.box), widgets.channel_delete_box, TRUE, TRUE, 0);
-    gtk_widget_set_name(widgets.channel_delete_box, "channel_delete_box");
-    g_object_set(widgets.channel_delete_box, "margin-top", 10, NULL);
-    g_object_set(widgets.channel_delete_box, "margin-left", 10, NULL);
-    gtk_widget_set_halign(widgets.channel_delete_box, GTK_ALIGN_START);
-    gtk_widget_set_valign(widgets.channel_delete_box, GTK_ALIGN_START);
+    widgets.rename_channel_enable_switch = gtk_switch_new();
+    gtk_switch_set_state(widgets.rename_channel_enable_switch, false);
+    gtk_container_add(GTK_CONTAINER(widgets.rename_channel_box), widgets.rename_channel_enable_switch);
+    g_object_set(widgets.rename_channel_enable_switch, "margin-left", 10, NULL);
+    g_object_set(widgets.rename_channel_enable_switch, "margin-right", 10, NULL);
 
-    widgets.channel_delete_enable_switch = gtk_switch_new();
-    gtk_switch_set_state(widgets.channel_delete_enable_switch, false);
-    gtk_container_add(GTK_CONTAINER(widgets.channel_delete_box), widgets.channel_delete_enable_switch);
-    g_object_set(widgets.channel_delete_enable_switch, "margin-left", 10, NULL);
-    g_object_set(widgets.channel_delete_enable_switch, "margin-right", 10, NULL);
+    widgets.rename_channel_label = gtk_label_new("RENAME ALL");
+    gtk_container_add(GTK_CONTAINER(widgets.rename_channel_box), widgets.rename_channel_label);
+    gtk_widget_set_name(widgets.rename_channel_label, "rename_channel_label");
+    gtk_widget_set_halign(widgets.rename_channel_label, GTK_ALIGN_CENTER);
+    g_object_set(widgets.rename_channel_label, "margin-left", 15, NULL);
+    g_object_set(widgets.rename_channel_label, "margin-right", 15, NULL);
 
-    widgets.channel_delete_label = gtk_label_new("DELETE CHANNELS");
-    gtk_container_add(GTK_CONTAINER(widgets.channel_delete_box), widgets.channel_delete_label);
-    gtk_widget_set_name(widgets.channel_delete_label, "channel_delete_label");
-    gtk_widget_set_halign(widgets.channel_delete_label, GTK_ALIGN_CENTER);
-    gtk_widget_set_name(widgets.channel_delete_label, "channel_delete_label");
-    g_object_set(widgets.channel_delete_label, "margin-left", 5, NULL);
-    g_object_set(widgets.channel_delete_label, "margin-right", 5, NULL);
+    widgets.rename_channel_entry = gtk_entry_new();
+    gtk_entry_set_max_length(GTK_ENTRY(widgets.rename_channel_entry), 2000);
+    gtk_container_add(GTK_CONTAINER(widgets.rename_channel_box), widgets.rename_channel_entry);
+    g_object_set(widgets.rename_channel_entry, "margin-left", 10, NULL);
+    g_object_set(widgets.rename_channel_entry, "margin-right", 10, NULL);
+    gtk_entry_set_text(widgets.rename_channel_entry, "nuked-by-krokodil");
 
     /**
-     * Last Module
      * Start Button
      */
 
-    widgets.button_start = gtk_button_new_with_label("START");
-    gtk_container_add(GTK_CONTAINER(widgets.box), widgets.button_start);
-    g_signal_connect(widgets.button_start, "clicked", G_CALLBACK(start_button_pressed), &widgets);
-    g_signal_connect_swapped(widgets.button_start, "clicked", G_CALLBACK(gtk_widget_destroy), widgets.window);
-    gtk_widget_set_valign(widgets.button_start, GTK_ALIGN_END);
-    gtk_widget_set_name(widgets.button_start, "button_start");
+    //widgets.button_start = gtk_button_new_with_label("START");
+    //gtk_container_add(GTK_CONTAINER(widgets.box), widgets.button_start);
+    //g_signal_connect(widgets.button_start, "clicked", G_CALLBACK(start_button_pressed), &widgets);
+    //g_signal_connect_swapped(widgets.button_start, "clicked", G_CALLBACK(gtk_widget_destroy), widgets.window);
+    //gtk_widget_set_valign(widgets.button_start, GTK_ALIGN_END);
+    //gtk_widget_set_name(widgets.button_start, "button_start");
 
     gtk_widget_show_all(widgets.window);
 }

