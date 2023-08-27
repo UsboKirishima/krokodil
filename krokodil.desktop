@@ -1,0 +1,16 @@
+[Desktop Entry]
+Comment[it_IT]=
+Comment=
+Exec=krokodil
+GenericName[it_IT]=
+GenericName=
+Icon=/home/usbo/.icons/krokodil.png
+MimeType=
+Name[it_IT]=Krokodil
+Name=Krokodil
+StartupNotify=true
+Terminal=true
+TerminalOptions=
+Type=Application
+X-KDE-SubstituteUID=false
+X-KDE-Username=

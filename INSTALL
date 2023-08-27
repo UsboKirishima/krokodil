@@ -32,8 +32,17 @@ else
 	done
 fi
 
+
+(make dist 2> /dev/null)
+(sudo cp build/krokodil /usr/bin/krokodil)
+
+(cp public/krokodil.png $HOME/.icons/krokodil.png)
+(desktop-file-validate krokodil.desktop)
+(desktop-file-install --dir=$HOME/.local/share/applications krokodil.desktop)
+(update-desktop-database ~/.local/share/applications)
+
+#Orca
 (git clone $ORCA_URL /tmp/orca)
 (cd /tmp/orca && make && sudo make install)
 
-(clear)
 (cowsay "Welcome to Krokodil" 2> /dev/null | lolcat)
