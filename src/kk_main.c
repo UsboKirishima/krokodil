@@ -2,6 +2,7 @@
 #include <kk_ui.h>
 #include <kk_client.h>
 #include <kk_dashboard.h>
+#include <kk_id.h>
 
 #include "../config/token.h"
 
@@ -29,5 +30,6 @@ int main(int argc,
 
     startUI();
     startDashboard();
+    //startId();
     client_init(t_configs.token);
 }
