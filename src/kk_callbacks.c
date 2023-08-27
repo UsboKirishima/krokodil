@@ -112,4 +112,59 @@ void start_button_pressed(GtkWidget *widget, gpointer data)
 
     char *rename_c_name = gtk_entry_get_text((GtkEntry *)w->rename_channel_entry);
     strcpy(s_attack.rename_channel_name, rename_c_name);
+
+    /**
+     * Presence
+     */
+
+    if (gtk_switch_get_state(w->presence_enable_switch) == TRUE)
+    {
+        s_attack.presence_enabled = true;
+    }
+    else
+    {
+        s_attack.presence_enabled = false;
+    }
+
+    char *presence_c_name = gtk_entry_get_text((GtkEntry *)w->presence_entry);
+    strcpy(s_attack.presence_name, presence_c_name);
+
+    char *presence_c_type = gtk_combo_box_text_get_active_text(w->presence_type_combobox);
+
+    /**
+     * Playing   : 0
+     * Streaming : 1
+     * Listening : 2
+     * Watching  : 3
+     * Custom    : 4
+     * Competing : 5
+    */
+
+    
+    if(presence_c_type == "Playing") 
+    {
+        s_attack.presence_type = 0;
+    }
+    if(presence_c_type == "Watching") 
+    {
+        s_attack.presence_type = 3;
+    }
+    if(presence_c_type == "Streaming") 
+    {
+        s_attack.presence_type = 1;
+    }
+    if(presence_c_type == "Competing") 
+    {
+        s_attack.presence_type = 5;
+    }
+    if(presence_c_type == "Listening") 
+    {
+        s_attack.presence_type = 2;
+    }
+
+    /**
+     * 'online', 'dnd', 'idle', 'offline'
+    */
+    char *presence_c_status = gtk_combo_box_text_get_active_text(w->presence_status_combobox);
+    strcpy(s_attack.presence_status, presence_c_status);
 }

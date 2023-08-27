@@ -17,7 +17,7 @@ struct attack
     bool mass_channel_enabled;
     char mass_channel_name[15];
     int mass_channel_count;
-    int mass_channel_type; 
+    int mass_channel_type;
 
     bool guild_name_enabled;
     char guild_name[15];
@@ -29,6 +29,11 @@ struct attack
 
     bool rename_channel_enabled;
     char rename_channel_name[30];
+
+    bool presence_enabled;
+    char presence_name[30];
+    int presence_type;
+    char presence_status[20];
 };
 
 extern struct attack s_attack;
@@ -52,8 +57,8 @@ void mass_channel_count_change(GtkWidget *self,
                                gpointer user_data);
 
 void guild_name_enable_switched(GtkSwitch *widget,
-                                  gboolean state,
-                                  gpointer user_data);
+                                gboolean state,
+                                gpointer user_data);
 
 void guild_name_entry_active(GtkWidget *widget, gpointer data);
 

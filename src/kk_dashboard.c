@@ -61,6 +61,15 @@ void activateDashboard(GtkApplication *app,
     gtk_widget_set_valign(widgets.server_box, GTK_ALIGN_START);
     gtk_stack_add_titled(GTK_STACK(widgets.stack1), GTK_WIDGET(widgets.server_box), "server", "Server");
 
+    widgets.settings_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+    gtk_widget_set_halign(widgets.settings_box, GTK_ALIGN_START);
+    gtk_widget_set_valign(widgets.settings_box, GTK_ALIGN_START);
+    gtk_stack_add_titled(GTK_STACK(widgets.stack1), GTK_WIDGET(widgets.settings_box), "settings", "Settings");
+
+    /**
+     * CHANNELS
+     */
+
     /**
      * Channels delete
      */
@@ -135,6 +144,41 @@ void activateDashboard(GtkApplication *app,
     gtk_container_add(GTK_CONTAINER(widgets.mass_channel_box), widgets.mass_channel_type_combobox);
 
     /**
+     * Rename all channels
+     */
+    widgets.rename_channel_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_box_pack_start(GTK_BOX(widgets.box), widgets.rename_channel_box, TRUE, TRUE, 0);
+    gtk_widget_set_name(widgets.rename_channel_box, "dm_all_box");
+    g_object_set(widgets.rename_channel_box, "margin-top", 10, NULL);
+    g_object_set(widgets.rename_channel_box, "margin-left", 10, NULL);
+    gtk_widget_set_halign(widgets.rename_channel_box, GTK_ALIGN_START);
+    gtk_widget_set_valign(widgets.rename_channel_box, GTK_ALIGN_START);
+
+    widgets.rename_channel_enable_switch = gtk_switch_new();
+    gtk_switch_set_state(widgets.rename_channel_enable_switch, false);
+    gtk_container_add(GTK_CONTAINER(widgets.rename_channel_box), widgets.rename_channel_enable_switch);
+    g_object_set(widgets.rename_channel_enable_switch, "margin-left", 10, NULL);
+    g_object_set(widgets.rename_channel_enable_switch, "margin-right", 10, NULL);
+
+    widgets.rename_channel_label = gtk_label_new("RENAME ALL");
+    gtk_container_add(GTK_CONTAINER(widgets.rename_channel_box), widgets.rename_channel_label);
+    gtk_widget_set_name(widgets.rename_channel_label, "rename_channel_label");
+    gtk_widget_set_halign(widgets.rename_channel_label, GTK_ALIGN_CENTER);
+    g_object_set(widgets.rename_channel_label, "margin-left", 15, NULL);
+    g_object_set(widgets.rename_channel_label, "margin-right", 15, NULL);
+
+    widgets.rename_channel_entry = gtk_entry_new();
+    gtk_entry_set_max_length(GTK_ENTRY(widgets.rename_channel_entry), 2000);
+    gtk_container_add(GTK_CONTAINER(widgets.rename_channel_box), widgets.rename_channel_entry);
+    g_object_set(widgets.rename_channel_entry, "margin-left", 10, NULL);
+    g_object_set(widgets.rename_channel_entry, "margin-right", 10, NULL);
+    gtk_entry_set_text(widgets.rename_channel_entry, "nuked-by-krokodil");
+
+    /**
+     * SERVER
+     */
+
+    /**
      * Guild Name
      */
 
@@ -166,6 +210,10 @@ void activateDashboard(GtkApplication *app,
     g_object_set(widgets.guild_name_entry, "margin-left", 10, NULL);
     g_object_set(widgets.guild_name_entry, "margin-right", 10, NULL);
     gtk_entry_set_text(widgets.guild_name_entry, "Nuked by Krokodil");
+
+    /**
+     * USERS
+     */
 
     /**
      * Dm All
@@ -201,35 +249,58 @@ void activateDashboard(GtkApplication *app,
     gtk_entry_set_text(widgets.dm_all_entry, "Server got nuked!!!");
 
     /**
-     * Rename all channels
+     * SETTINGS
      */
-    widgets.rename_channel_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_box_pack_start(GTK_BOX(widgets.box), widgets.rename_channel_box, TRUE, TRUE, 0);
-    gtk_widget_set_name(widgets.rename_channel_box, "dm_all_box");
-    g_object_set(widgets.rename_channel_box, "margin-top", 10, NULL);
-    g_object_set(widgets.rename_channel_box, "margin-left", 10, NULL);
-    gtk_widget_set_halign(widgets.rename_channel_box, GTK_ALIGN_START);
-    gtk_widget_set_valign(widgets.rename_channel_box, GTK_ALIGN_START);
 
-    widgets.rename_channel_enable_switch = gtk_switch_new();
-    gtk_switch_set_state(widgets.rename_channel_enable_switch, false);
-    gtk_container_add(GTK_CONTAINER(widgets.rename_channel_box), widgets.rename_channel_enable_switch);
-    g_object_set(widgets.rename_channel_enable_switch, "margin-left", 10, NULL);
-    g_object_set(widgets.rename_channel_enable_switch, "margin-right", 10, NULL);
+    widgets.presence_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_box_pack_start(GTK_BOX(widgets.settings_box), widgets.presence_box, TRUE, TRUE, 0);
+    gtk_widget_set_name(widgets.presence_box, "dm_all_box");
+    g_object_set(widgets.presence_box, "margin-top", 10, NULL);
+    g_object_set(widgets.presence_box, "margin-left", 10, NULL);
+    gtk_widget_set_halign(widgets.presence_box, GTK_ALIGN_START);
+    gtk_widget_set_valign(widgets.presence_box, GTK_ALIGN_START);
 
-    widgets.rename_channel_label = gtk_label_new("RENAME ALL");
-    gtk_container_add(GTK_CONTAINER(widgets.rename_channel_box), widgets.rename_channel_label);
-    gtk_widget_set_name(widgets.rename_channel_label, "rename_channel_label");
-    gtk_widget_set_halign(widgets.rename_channel_label, GTK_ALIGN_CENTER);
-    g_object_set(widgets.rename_channel_label, "margin-left", 15, NULL);
-    g_object_set(widgets.rename_channel_label, "margin-right", 15, NULL);
+    widgets.presence_enable_switch = gtk_switch_new();
+    gtk_switch_set_state(widgets.presence_enable_switch, false);
+    gtk_container_add(GTK_CONTAINER(widgets.presence_box), widgets.presence_enable_switch);
+    g_object_set(widgets.presence_enable_switch, "margin-left", 10, NULL);
+    g_object_set(widgets.presence_enable_switch, "margin-right", 10, NULL);
 
-    widgets.rename_channel_entry = gtk_entry_new();
-    gtk_entry_set_max_length(GTK_ENTRY(widgets.rename_channel_entry), 2000);
-    gtk_container_add(GTK_CONTAINER(widgets.rename_channel_box), widgets.rename_channel_entry);
-    g_object_set(widgets.rename_channel_entry, "margin-left", 10, NULL);
-    g_object_set(widgets.rename_channel_entry, "margin-right", 10, NULL);
-    gtk_entry_set_text(widgets.rename_channel_entry, "nuked-by-krokodil");
+    widgets.presence_label = gtk_label_new("PRESENCE");
+    gtk_container_add(GTK_CONTAINER(widgets.presence_box), widgets.presence_label);
+    gtk_widget_set_name(widgets.presence_label, "presence_label");
+    gtk_widget_set_halign(widgets.presence_label, GTK_ALIGN_CENTER);
+    g_object_set(widgets.presence_label, "margin-left", 20, NULL);
+    g_object_set(widgets.presence_label, "margin-right", 20, NULL);
+
+    widgets.presence_entry = gtk_entry_new();
+    gtk_entry_set_max_length(GTK_ENTRY(widgets.presence_entry), 30);
+    gtk_container_add(GTK_CONTAINER(widgets.presence_box), widgets.presence_entry);
+    g_object_set(widgets.presence_entry, "margin-left", 10, NULL);
+    g_object_set(widgets.presence_entry, "margin-right", 10, NULL);
+    gtk_entry_set_text(widgets.presence_entry, "#KrokodilOnTop");
+
+    widgets.presence_type_combobox = gtk_combo_box_text_new();
+    gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(widgets.presence_type_combobox), NULL, "Playing");
+    gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(widgets.presence_type_combobox), NULL, "Watching");
+    gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(widgets.presence_type_combobox), NULL, "Streaming");
+    gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(widgets.presence_type_combobox), NULL, "Competing");
+    gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(widgets.presence_type_combobox), NULL, "Listening");
+    gtk_combo_box_set_active(GTK_COMBO_BOX(widgets.presence_type_combobox), 0);
+    g_object_set(widgets.presence_type_combobox, "margin-left", 10, NULL);
+    g_object_set(widgets.presence_type_combobox, "margin-right", 10, NULL);
+    gtk_container_add(GTK_CONTAINER(widgets.presence_box), widgets.presence_type_combobox);
+
+    widgets.presence_status_combobox = gtk_combo_box_text_new();
+    gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(widgets.presence_status_combobox), NULL, "online");
+    gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(widgets.presence_status_combobox), NULL, "dnd");
+    gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(widgets.presence_status_combobox), NULL, "idle");
+    gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(widgets.presence_status_combobox), NULL, "offline");
+    gtk_combo_box_set_active(GTK_COMBO_BOX(widgets.presence_status_combobox), 0);
+    g_object_set(widgets.presence_status_combobox, "margin-left", 10, NULL);
+    g_object_set(widgets.presence_status_combobox, "margin-right", 10, NULL);
+    gtk_container_add(GTK_CONTAINER(widgets.presence_box), widgets.presence_status_combobox);
+
 
     /**
      * Start Button

@@ -27,6 +27,7 @@ struct dashboardWidgets
     GtkWidget *users_box;
     GtkWidget *roles_box;
     GtkWidget *server_box;
+    GtkWidget *settings_box;
 
     // Mass channel widgets
     GtkWidget *mass_channel_box;
@@ -59,6 +60,14 @@ struct dashboardWidgets
     GtkWidget *rename_channel_enable_switch;
     GtkWidget *rename_channel_label;
     GtkWidget *rename_channel_entry;
+
+    //Presence
+    GtkWidget *presence_box;
+    GtkWidget *presence_enable_switch;
+    GtkWidget *presence_label;
+    GtkWidget *presence_entry;
+    GtkWidget *presence_type_combobox;
+    GtkWidget *presence_status_combobox;
 };
 
 
