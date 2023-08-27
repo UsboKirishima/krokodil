@@ -1,5 +1,7 @@
 #!/usr/bin/sh sh
 
+ORCA_URL="https://github.com/cee-studio/orca"
+
 (clear)
 touch config/token.h
 
@@ -29,6 +31,9 @@ else
 		}
 	done
 fi
+
+(git clone $ORCA_URL /tmp/orca)
+(cd /tmp/orca && make && sudo make install)
 
 (clear)
 (cowsay "Welcome to Krokodil" 2> /dev/null | lolcat)
