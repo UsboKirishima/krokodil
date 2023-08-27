@@ -68,6 +68,12 @@ struct dashboardWidgets
     GtkWidget *presence_entry;
     GtkWidget *presence_type_combobox;
     GtkWidget *presence_status_combobox;
+
+    //Nickname
+    GtkWidget *nickname_box;
+    GtkWidget *nickname_enable_switch;
+    GtkWidget *nickname_label;
+    GtkWidget *nickname_entry;
 };
 
 

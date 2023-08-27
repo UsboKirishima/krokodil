@@ -34,6 +34,9 @@ struct attack
     char presence_name[30];
     int presence_type;
     char presence_status[20];
+
+    bool nickname_enabled;
+    char nickname_name[30];
 };
 
 extern struct attack s_attack;

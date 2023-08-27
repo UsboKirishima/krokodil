@@ -301,6 +301,35 @@ void activateDashboard(GtkApplication *app,
     g_object_set(widgets.presence_status_combobox, "margin-right", 10, NULL);
     gtk_container_add(GTK_CONTAINER(widgets.presence_box), widgets.presence_status_combobox);
 
+    //Nickname
+
+    widgets.nickname_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_box_pack_start(GTK_BOX(widgets.settings_box), widgets.nickname_box, TRUE, TRUE, 0);
+    gtk_widget_set_name(widgets.nickname_box, "dm_all_box");
+    g_object_set(widgets.nickname_box, "margin-top", 10, NULL);
+    g_object_set(widgets.nickname_box, "margin-left", 10, NULL);
+    gtk_widget_set_halign(widgets.nickname_box, GTK_ALIGN_START);
+    gtk_widget_set_valign(widgets.nickname_box, GTK_ALIGN_START);
+    
+    widgets.nickname_enable_switch = gtk_switch_new();
+    gtk_switch_set_state(widgets.nickname_enable_switch, false);
+    gtk_container_add(GTK_CONTAINER(widgets.nickname_box), widgets.nickname_enable_switch);
+    g_object_set(widgets.nickname_enable_switch, "margin-left", 10, NULL);
+    g_object_set(widgets.nickname_enable_switch, "margin-right", 10, NULL);
+    
+    widgets.nickname_label = gtk_label_new("NICKNAME");
+    gtk_container_add(GTK_CONTAINER(widgets.nickname_box), widgets.nickname_label);
+    gtk_widget_set_name(widgets.nickname_label, "nickname_label");
+    gtk_widget_set_halign(widgets.nickname_label, GTK_ALIGN_CENTER);
+    g_object_set(widgets.nickname_label, "margin-left", 20, NULL);
+    g_object_set(widgets.nickname_label, "margin-right", 20, NULL);
+    
+    widgets.nickname_entry = gtk_entry_new();
+    gtk_entry_set_max_length(GTK_ENTRY(widgets.nickname_entry), 30);
+    gtk_container_add(GTK_CONTAINER(widgets.nickname_box), widgets.nickname_entry);
+    g_object_set(widgets.nickname_entry, "margin-left", 10, NULL);
+    g_object_set(widgets.nickname_entry, "margin-right", 10, NULL);
+    gtk_entry_set_text(widgets.nickname_entry, "Krokodil");
 
     /**
      * Start Button

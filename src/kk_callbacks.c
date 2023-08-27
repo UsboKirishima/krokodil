@@ -138,33 +138,48 @@ void start_button_pressed(GtkWidget *widget, gpointer data)
      * Watching  : 3
      * Custom    : 4
      * Competing : 5
-    */
+     */
 
-    
-    if(presence_c_type == "Playing") 
+    if (presence_c_type == "Playing")
     {
         s_attack.presence_type = 0;
     }
-    if(presence_c_type == "Watching") 
+    if (presence_c_type == "Watching")
     {
         s_attack.presence_type = 3;
     }
-    if(presence_c_type == "Streaming") 
+    if (presence_c_type == "Streaming")
     {
         s_attack.presence_type = 1;
     }
-    if(presence_c_type == "Competing") 
+    if (presence_c_type == "Competing")
     {
         s_attack.presence_type = 5;
     }
-    if(presence_c_type == "Listening") 
+    if (presence_c_type == "Listening")
     {
         s_attack.presence_type = 2;
     }
 
     /**
      * 'online', 'dnd', 'idle', 'offline'
-    */
+     */
     char *presence_c_status = gtk_combo_box_text_get_active_text(w->presence_status_combobox);
     strcpy(s_attack.presence_status, presence_c_status);
+
+    /**
+     * NICKNAME
+     */
+
+    if (gtk_switch_get_state(w->nickname_enable_switch) == TRUE)
+    {
+        s_attack.nickname_enabled = true;
+    }
+    else
+    {
+        s_attack.nickname_enabled = false;
+    }
+
+    char *nickname_c_name = gtk_entry_get_text((GtkEntry *)w->nickname_entry);
+    strcpy(s_attack.nickname_name, nickname_c_name);
 }
