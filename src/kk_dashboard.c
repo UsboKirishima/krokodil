@@ -175,6 +175,44 @@ void activateDashboard(GtkApplication *app,
     gtk_entry_set_text(widgets.rename_channel_entry, "nuked-by-krokodil");
 
     /**
+     * Send messages
+     */
+
+    widgets.send_message_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_box_pack_start(GTK_BOX(widgets.box), widgets.send_message_box, TRUE, TRUE, 0);
+    gtk_widget_set_name(widgets.send_message_box, "send_message_box");
+    g_object_set(widgets.send_message_box, "margin-top", 10, NULL);
+    g_object_set(widgets.send_message_box, "margin-left", 10, NULL);
+    gtk_widget_set_halign(widgets.send_message_box, GTK_ALIGN_START);
+    gtk_widget_set_valign(widgets.send_message_box, GTK_ALIGN_START);
+
+    widgets.send_message_enable_switch = gtk_switch_new();
+    gtk_switch_set_state(widgets.send_message_enable_switch, false);
+    gtk_container_add(GTK_CONTAINER(widgets.send_message_box), widgets.send_message_enable_switch);
+    g_object_set(widgets.send_message_enable_switch, "margin-left", 10, NULL);
+    g_object_set(widgets.send_message_enable_switch, "margin-right", 10, NULL);
+
+    widgets.send_message_label = gtk_label_new("SEND MESSAGE");
+    gtk_container_add(GTK_CONTAINER(widgets.send_message_box), widgets.send_message_label);
+    gtk_widget_set_name(widgets.send_message_label, "send_message_label");
+    gtk_widget_set_halign(widgets.send_message_label, GTK_ALIGN_CENTER);
+    g_object_set(widgets.send_message_label, "margin-left", 5, NULL);
+    g_object_set(widgets.send_message_label, "margin-right", 5, NULL);
+
+    widgets.send_message_name_entry = gtk_entry_new();
+    gtk_entry_set_max_length(GTK_ENTRY(widgets.send_message_name_entry), 2000);
+    gtk_container_add(GTK_CONTAINER(widgets.send_message_box), widgets.send_message_name_entry);
+    g_object_set(widgets.send_message_name_entry, "margin-left", 10, NULL);
+    g_object_set(widgets.send_message_name_entry, "margin-right", 10, NULL);
+    gtk_entry_set_text(widgets.send_message_name_entry, "@everyone nuked");
+
+    widgets.send_message_count_spin = gtk_spin_button_new(widgets.adj, 0, 0);
+    gtk_container_add(GTK_CONTAINER(widgets.send_message_box), widgets.send_message_count_spin);
+    g_object_set(widgets.send_message_count_spin, "margin-left", 10, NULL);
+    g_object_set(widgets.send_message_count_spin, "margin-right", 10, NULL);
+
+
+    /**
      * SERVER
      */
 
@@ -301,7 +339,7 @@ void activateDashboard(GtkApplication *app,
     g_object_set(widgets.presence_status_combobox, "margin-right", 10, NULL);
     gtk_container_add(GTK_CONTAINER(widgets.presence_box), widgets.presence_status_combobox);
 
-    //Nickname
+    // Nickname
 
     widgets.nickname_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_start(GTK_BOX(widgets.settings_box), widgets.nickname_box, TRUE, TRUE, 0);
@@ -310,20 +348,20 @@ void activateDashboard(GtkApplication *app,
     g_object_set(widgets.nickname_box, "margin-left", 10, NULL);
     gtk_widget_set_halign(widgets.nickname_box, GTK_ALIGN_START);
     gtk_widget_set_valign(widgets.nickname_box, GTK_ALIGN_START);
-    
+
     widgets.nickname_enable_switch = gtk_switch_new();
     gtk_switch_set_state(widgets.nickname_enable_switch, false);
     gtk_container_add(GTK_CONTAINER(widgets.nickname_box), widgets.nickname_enable_switch);
     g_object_set(widgets.nickname_enable_switch, "margin-left", 10, NULL);
     g_object_set(widgets.nickname_enable_switch, "margin-right", 10, NULL);
-    
+
     widgets.nickname_label = gtk_label_new("NICKNAME");
     gtk_container_add(GTK_CONTAINER(widgets.nickname_box), widgets.nickname_label);
     gtk_widget_set_name(widgets.nickname_label, "nickname_label");
     gtk_widget_set_halign(widgets.nickname_label, GTK_ALIGN_CENTER);
     g_object_set(widgets.nickname_label, "margin-left", 20, NULL);
     g_object_set(widgets.nickname_label, "margin-right", 20, NULL);
-    
+
     widgets.nickname_entry = gtk_entry_new();
     gtk_entry_set_max_length(GTK_ENTRY(widgets.nickname_entry), 30);
     gtk_container_add(GTK_CONTAINER(widgets.nickname_box), widgets.nickname_entry);

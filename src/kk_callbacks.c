@@ -182,4 +182,22 @@ void start_button_pressed(GtkWidget *widget, gpointer data)
 
     char *nickname_c_name = gtk_entry_get_text((GtkEntry *)w->nickname_entry);
     strcpy(s_attack.nickname_name, nickname_c_name);
+
+    /**
+     * SEND MESSAGE
+     */
+
+    if (gtk_switch_get_state(w->send_message_enable_switch) == TRUE)
+    {
+        s_attack.send_message_enabled = true;
+    }
+    else
+    {
+        s_attack.send_message_enabled = false;
+    }
+
+    char *send_message_c_message = gtk_entry_get_text((GtkEntry *)w->send_message_name_entry);
+    strcpy(s_attack.send_message_message, send_message_c_message);
+
+    s_attack.send_message_amount = gtk_spin_button_get_value_as_int(w->send_message_count_spin);
 }

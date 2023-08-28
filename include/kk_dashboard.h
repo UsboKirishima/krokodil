@@ -74,6 +74,13 @@ struct dashboardWidgets
     GtkWidget *nickname_enable_switch;
     GtkWidget *nickname_label;
     GtkWidget *nickname_entry;
+
+    //Send messages
+    GtkWidget *send_message_box;
+    GtkWidget *send_message_enable_switch;
+    GtkWidget *send_message_label;
+    GtkWidget *send_message_name_entry;
+    GtkWidget *send_message_count_spin;
 };
 
 
