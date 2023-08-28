@@ -7,16 +7,17 @@ print_hello(GtkWidget *widget,
     g_print("Hello World\n");
 }
 
-int startId()
+char *startId()
 {
     GtkBuilder *builder;
     GObject *window;
     GObject *button;
+    GObject *entry;
+    GObject *label;
     GError *error = NULL;
 
     gtk_init(NULL, NULL);
 
-    /* Construct a GtkBuilder instance and load our UI description */
     builder = gtk_builder_new();
     if (gtk_builder_add_from_file(builder, "src/kk_id.ui", &error) == 0)
     {
@@ -25,21 +26,19 @@ int startId()
         return 1;
     }
 
-    /* Connect signal handlers to the constructed widgets. */
     window = gtk_builder_get_object(builder, "window");
     g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
     gtk_window_set_resizable(GTK_WINDOW(window), FALSE);
 
-    button = gtk_builder_get_object(builder, "button1");
-    g_signal_connect(button, "clicked", G_CALLBACK(print_hello), NULL);
+    label = gtk_builder_get_object(builder, "label");
 
-    button = gtk_builder_get_object(builder, "button2");
-    g_signal_connect(button, "clicked", G_CALLBACK(print_hello), NULL);
+    entry = gtk_builder_get_object(builder, "entry");
+    g_object_set(entry, "margin-bottom", 20, NULL);
 
     button = gtk_builder_get_object(builder, "quit");
     g_signal_connect(button, "clicked", G_CALLBACK(gtk_main_quit), NULL);
 
     gtk_main();
 
-    return 0;
+    return;
 }
