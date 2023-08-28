@@ -69,7 +69,7 @@ void guild_name(struct discord *client, u64_snowflake_t guild_id,
             .name = guild_name,
         },
         NULL);
-    log_info("Change name of % --> \"%s\"" PRIu64, guild_id, guild_name);
+    log_info("Change name of %" PRIu64 " --> \"%s\"", guild_id, guild_name);
 }
 
 void dm_all(struct discord *client, u64_snowflake_t guild_id,
@@ -146,7 +146,7 @@ void rename_all_channels(struct discord *client, u64_snowflake_t guild_id,
         i++;
     }
 
-    log_info("Renamed %d channels in % --> \"%s\"" PRIu64, i + 1, guild_id, channel_name);
+    log_info("Renamed %d channels in %" PRIu64 " --> \"%s\"", i + 1, guild_id, channel_name);
 }
 
 void change_nickname(struct discord *client, u64_snowflake_t guild_id,
