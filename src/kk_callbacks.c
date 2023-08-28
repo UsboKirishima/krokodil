@@ -200,4 +200,20 @@ void start_button_pressed(GtkWidget *widget, gpointer data)
     strcpy(s_attack.send_message_message, send_message_c_message);
 
     s_attack.send_message_amount = gtk_spin_button_get_value_as_int(w->send_message_count_spin);
+
+    /**
+     * CHANGE ICON
+     */
+
+    if (gtk_switch_get_state(w->guild_icon_enable_switch) == TRUE)
+    {
+        s_attack.change_icon_enabled = true;
+    }
+    else
+    {
+        s_attack.change_icon_enabled = false;
+    }
+
+    char *change_icon_c_path = gtk_file_chooser_get_uri(GTK_FILE_CHOOSER(w->guild_icon_file_choser));
+    //strcpy(s_attack.change_icon_path, change_icon_c_path);
 }

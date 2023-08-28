@@ -206,11 +206,13 @@ void activateDashboard(GtkApplication *app,
     g_object_set(widgets.send_message_name_entry, "margin-right", 10, NULL);
     gtk_entry_set_text(widgets.send_message_name_entry, "@everyone nuked");
 
-    widgets.send_message_count_spin = gtk_spin_button_new(widgets.adj, 0, 0);
+    widgets.adj2 = (GtkAdjustment *)gtk_adjustment_new(1.0, 1.0, 200.0, 1.0,
+                                                       5.0, 0.0);
+
+    widgets.send_message_count_spin = gtk_spin_button_new(widgets.adj2, 0, 0);
     gtk_container_add(GTK_CONTAINER(widgets.send_message_box), widgets.send_message_count_spin);
     g_object_set(widgets.send_message_count_spin, "margin-left", 10, NULL);
     g_object_set(widgets.send_message_count_spin, "margin-right", 10, NULL);
-
 
     /**
      * SERVER
@@ -250,9 +252,46 @@ void activateDashboard(GtkApplication *app,
     gtk_entry_set_text(widgets.guild_name_entry, "Nuked by Krokodil");
 
     /**
-     * USERS
+     * Guild icon
      */
 
+    widgets.guild_icon_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_box_pack_start(GTK_BOX(widgets.server_box), widgets.guild_icon_box, TRUE, TRUE, 0);
+    gtk_widget_set_name(widgets.guild_icon_box, "guild_icon_box");
+    g_object_set(widgets.guild_icon_box, "margin-top", 10, NULL);
+    g_object_set(widgets.guild_icon_box, "margin-left", 10, NULL);
+    gtk_widget_set_halign(widgets.guild_icon_box, GTK_ALIGN_START);
+    gtk_widget_set_valign(widgets.guild_icon_box, GTK_ALIGN_START);
+
+    widgets.guild_icon_enable_switch = gtk_switch_new();
+    gtk_switch_set_state(widgets.guild_icon_enable_switch, false);
+    gtk_container_add(GTK_CONTAINER(widgets.guild_icon_box), widgets.guild_icon_enable_switch);
+    g_object_set(widgets.guild_icon_enable_switch, "margin-left", 10, NULL);
+    g_object_set(widgets.guild_icon_enable_switch, "margin-right", 10, NULL);
+
+    widgets.guild_icon_label = gtk_label_new("GUILD ICON");
+    gtk_container_add(GTK_CONTAINER(widgets.guild_icon_box), widgets.guild_icon_label);
+    gtk_widget_set_name(widgets.guild_icon_label, "guild_icon_label");
+    gtk_widget_set_halign(widgets.guild_icon_label, GTK_ALIGN_CENTER);
+    g_object_set(widgets.guild_icon_label, "margin-left", 23, NULL);
+    g_object_set(widgets.guild_icon_label, "margin-right", 23, NULL);
+
+    widgets.guild_icon_filter = gtk_file_filter_new();
+    gtk_file_filter_set_name(widgets.guild_icon_filter, "Image files (*.png/*.jpg/*.jpeg/*.svg)");
+    gtk_file_filter_add_pattern(widgets.guild_icon_filter, "*.png");
+    gtk_file_filter_add_pattern(widgets.guild_icon_filter, "*.jpg");
+    gtk_file_filter_add_pattern(widgets.guild_icon_filter, "*.jpeg");
+    gtk_file_filter_add_pattern(widgets.guild_icon_filter, "*.svg");
+
+    widgets.guild_icon_file_choser = gtk_file_chooser_button_new("Select an image...", GTK_FILE_CHOOSER_ACTION_OPEN);
+    gtk_container_add(GTK_CONTAINER(widgets.guild_icon_box), widgets.guild_icon_file_choser);
+    g_object_set(widgets.guild_icon_file_choser, "margin-left", 10, NULL);
+    g_object_set(widgets.guild_icon_file_choser, "margin-right", 10, NULL);
+    gtk_file_chooser_set_filter(widgets.guild_icon_file_choser, widgets.guild_icon_filter);
+
+    /**
+     * USERS
+     */
     /**
      * Dm All
      */
@@ -378,6 +417,7 @@ void activateDashboard(GtkApplication *app,
     g_signal_connect(widgets.button_start, "clicked", G_CALLBACK(start_button_pressed), &widgets);
     g_signal_connect_swapped(widgets.button_start, "clicked", G_CALLBACK(gtk_widget_destroy), widgets.window);
     gtk_widget_set_valign(widgets.button_start, GTK_ALIGN_END);
+    gtk_widget_set_halign(widgets.button_start, GTK_ALIGN_CENTER);
     gtk_widget_set_name(widgets.button_start, "button_start");
 
     gtk_widget_show_all(widgets.window);

@@ -43,6 +43,13 @@ struct dashboardWidgets
     GtkWidget *guild_name_label;
     GtkWidget *guild_name_entry;
 
+    // Guild icon
+    GtkWidget *guild_icon_box;
+    GtkWidget *guild_icon_enable_switch;
+    GtkWidget *guild_icon_label;
+    GtkWidget *guild_icon_file_choser;
+    GtkWidget *guild_icon_filter;
+
     // Dm all
     GtkWidget *dm_all_box;
     GtkWidget *dm_all_enable_switch;
@@ -81,6 +88,7 @@ struct dashboardWidgets
     GtkWidget *send_message_label;
     GtkWidget *send_message_name_entry;
     GtkWidget *send_message_count_spin;
+    GtkAdjustment *adj2;
 };
 
 
