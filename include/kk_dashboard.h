@@ -61,6 +61,11 @@ struct dashboardWidgets
     GtkWidget *ban_all_enable_switch;
     GtkWidget *ban_all_label;
 
+    //Kick all
+    GtkWidget *kick_all_box;
+    GtkWidget *kick_all_enable_switch;
+    GtkWidget *kick_all_label;
+
     // Delete all channels
     GtkWidget *channel_delete_box;
     GtkWidget *channel_delete_enable_switch;

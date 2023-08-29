@@ -229,4 +229,17 @@ void start_button_pressed(GtkWidget *widget, gpointer data)
     {
         s_attack.ban_all_enabled = false;
     }
+
+    /**
+     * KICK ALL
+     */
+
+    if (gtk_switch_get_state(w->kick_all_enable_switch) == TRUE)
+    {
+        s_attack.kick_all_enabled = true;
+    }
+    else
+    {
+        s_attack.kick_all_enabled = false;
+    }
 }

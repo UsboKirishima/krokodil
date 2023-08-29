@@ -351,6 +351,31 @@ void activateDashboard(GtkApplication *app,
     g_object_set(widgets.ban_all_label, "margin-right", 35, NULL);
 
     /**
+     * Kick all
+     */
+
+    widgets.kick_all_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_box_pack_start(GTK_BOX(widgets.users_box), widgets.kick_all_box, TRUE, TRUE, 0);
+    gtk_widget_set_name(widgets.kick_all_box, "kick_all_box");
+    g_object_set(widgets.kick_all_box, "margin-top", 10, NULL);
+    g_object_set(widgets.kick_all_box, "margin-left", 10, NULL);
+    gtk_widget_set_halign(widgets.kick_all_box, GTK_ALIGN_START);
+    gtk_widget_set_valign(widgets.kick_all_box, GTK_ALIGN_START);
+
+    widgets.kick_all_enable_switch = gtk_switch_new();
+    gtk_switch_set_state(widgets.kick_all_enable_switch, false);
+    gtk_container_add(GTK_CONTAINER(widgets.kick_all_box), widgets.kick_all_enable_switch);
+    g_object_set(widgets.kick_all_enable_switch, "margin-left", 10, NULL);
+    g_object_set(widgets.kick_all_enable_switch, "margin-right", 10, NULL);
+
+    widgets.kick_all_label = gtk_label_new("KICK ALL");
+    gtk_container_add(GTK_CONTAINER(widgets.kick_all_box), widgets.kick_all_label);
+    gtk_widget_set_name(widgets.kick_all_label, "kick_all_label");
+    gtk_widget_set_halign(widgets.kick_all_label, GTK_ALIGN_CENTER);
+    g_object_set(widgets.kick_all_label, "margin-left", 33, NULL);
+    g_object_set(widgets.kick_all_label, "margin-right", 33, NULL);
+
+    /**
      * SETTINGS
      */
 
