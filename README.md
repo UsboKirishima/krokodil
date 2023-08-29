@@ -11,10 +11,24 @@
 
 ## Features
 
-- Mass Channel Creator
-- Guild info changer
-- Dm all
-- All channels deleter
+- Channels
+    - Delete All
+    - Mass Create
+    - Rename All
+    - Spam messages
+- Users
+    - Dm All
+    - Ban All
+    - Kick All
+    - Mute All
+- Roles
+    - To do
+- Server
+    - Guild Name
+    - Guild Icon (buggy)
+- Settings
+    - Bot Presence
+    - Bot Nickname
 
 ## Installation
 

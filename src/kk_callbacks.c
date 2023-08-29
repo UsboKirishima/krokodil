@@ -242,4 +242,17 @@ void start_button_pressed(GtkWidget *widget, gpointer data)
     {
         s_attack.kick_all_enabled = false;
     }
+
+    /**
+     * MUTE ALL
+     */
+
+    if (gtk_switch_get_state(w->mute_all_enable_switch) == TRUE)
+    {
+        s_attack.mute_all_enabled = true;
+    }
+    else
+    {
+        s_attack.mute_all_enabled = false;
+    }
 }

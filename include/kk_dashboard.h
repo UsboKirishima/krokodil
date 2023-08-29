@@ -66,6 +66,11 @@ struct dashboardWidgets
     GtkWidget *kick_all_enable_switch;
     GtkWidget *kick_all_label;
 
+    //Mute all
+    GtkWidget *mute_all_box;
+    GtkWidget *mute_all_enable_switch;
+    GtkWidget *mute_all_label;
+
     // Delete all channels
     GtkWidget *channel_delete_box;
     GtkWidget *channel_delete_enable_switch;

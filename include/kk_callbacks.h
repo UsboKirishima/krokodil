@@ -48,6 +48,8 @@ struct attack
     bool ban_all_enabled;
 
     bool kick_all_enabled;
+
+    bool mute_all_enabled;
 };
 
 extern struct attack s_attack;
