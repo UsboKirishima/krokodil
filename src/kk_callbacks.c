@@ -215,5 +215,18 @@ void start_button_pressed(GtkWidget *widget, gpointer data)
     }
 
     char *change_icon_c_path = gtk_file_chooser_get_uri(GTK_FILE_CHOOSER(w->guild_icon_file_choser));
-    //strcpy(s_attack.change_icon_path, change_icon_c_path);
+    // strcpy(s_attack.change_icon_path, change_icon_c_path);
+
+    /**
+     * BAN ALL
+     */
+
+    if (gtk_switch_get_state(w->ban_all_enable_switch) == TRUE)
+    {
+        s_attack.ban_all_enabled = true;
+    }
+    else
+    {
+        s_attack.ban_all_enabled = false;
+    }
 }

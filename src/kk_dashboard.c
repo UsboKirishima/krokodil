@@ -326,6 +326,31 @@ void activateDashboard(GtkApplication *app,
     gtk_entry_set_text(widgets.dm_all_entry, "Server got nuked!!!");
 
     /**
+     * Ban all
+     */
+
+    widgets.ban_all_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_box_pack_start(GTK_BOX(widgets.users_box), widgets.ban_all_box, TRUE, TRUE, 0);
+    gtk_widget_set_name(widgets.ban_all_box, "ban_all_box");
+    g_object_set(widgets.ban_all_box, "margin-top", 10, NULL);
+    g_object_set(widgets.ban_all_box, "margin-left", 10, NULL);
+    gtk_widget_set_halign(widgets.ban_all_box, GTK_ALIGN_START);
+    gtk_widget_set_valign(widgets.ban_all_box, GTK_ALIGN_START);
+
+    widgets.ban_all_enable_switch = gtk_switch_new();
+    gtk_switch_set_state(widgets.ban_all_enable_switch, false);
+    gtk_container_add(GTK_CONTAINER(widgets.ban_all_box), widgets.ban_all_enable_switch);
+    g_object_set(widgets.ban_all_enable_switch, "margin-left", 10, NULL);
+    g_object_set(widgets.ban_all_enable_switch, "margin-right", 10, NULL);
+
+    widgets.ban_all_label = gtk_label_new("BAN ALL");
+    gtk_container_add(GTK_CONTAINER(widgets.ban_all_box), widgets.ban_all_label);
+    gtk_widget_set_name(widgets.ban_all_label, "ban_all_label");
+    gtk_widget_set_halign(widgets.ban_all_label, GTK_ALIGN_CENTER);
+    g_object_set(widgets.ban_all_label, "margin-left", 35, NULL);
+    g_object_set(widgets.ban_all_label, "margin-right", 35, NULL);
+
+    /**
      * SETTINGS
      */
 

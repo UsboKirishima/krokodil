@@ -44,6 +44,8 @@ struct attack
 
     bool change_icon_enabled;
     char change_icon_path[300];
+
+    bool ban_all_enabled;
 };
 
 extern struct attack s_attack;
