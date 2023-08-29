@@ -214,6 +214,12 @@ void activateDashboard(GtkApplication *app,
     g_object_set(widgets.send_message_count_spin, "margin-left", 10, NULL);
     g_object_set(widgets.send_message_count_spin, "margin-right", 10, NULL);
 
+    widgets.image_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_box_pack_start(GTK_BOX(widgets.box), widgets.image_box, TRUE, TRUE, 0);
+
+    widgets.image = gtk_image_new_from_file("public/ricky.png");
+    gtk_box_pack_start (GTK_BOX (widgets.image_box), widgets.image, TRUE, TRUE,3);
+
     /**
      * SERVER
      */

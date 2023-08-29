@@ -104,6 +104,10 @@ struct dashboardWidgets
     GtkWidget *send_message_name_entry;
     GtkWidget *send_message_count_spin;
     GtkAdjustment *adj2;
+
+    //Rick Image
+    GtkWidget *image_box;
+    GtkWidget *image;
 };
 
 
