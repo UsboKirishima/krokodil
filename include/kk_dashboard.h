@@ -105,9 +105,29 @@ struct dashboardWidgets
     GtkWidget *send_message_count_spin;
     GtkAdjustment *adj2;
 
-    //Rick Image
+    //Images Image
     GtkWidget *image_box;
     GtkWidget *image;
+
+    GtkAdjustment *adj3;
+
+    // Delete all roles
+    GtkWidget *roles_delete_box;
+    GtkWidget *roles_delete_enable_switch;
+    GtkWidget *roles_delete_label;
+
+    //Rename all roles
+    GtkWidget *roles_rename_box;
+    GtkWidget *roles_rename_enable_switch;
+    GtkWidget *roles_rename_label;
+    GtkWidget *roles_rename_entry;
+
+    //Mass roles
+    GtkWidget *roles_mass_box;
+    GtkWidget *roles_mass_enable_switch;
+    GtkWidget *roles_mass_label;
+    GtkWidget *roles_mass_name_entry;
+    GtkWidget *roles_mass_count_spin;
 };
 
 

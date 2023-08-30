@@ -50,6 +50,10 @@ struct attack
     bool kick_all_enabled;
 
     bool mute_all_enabled;
+
+    bool roles_mass_enabled;
+    char roles_mass_name[15];
+    int roles_mass_count;
 };
 
 extern struct attack s_attack;

@@ -415,6 +415,49 @@ void activateDashboard(GtkApplication *app,
     g_object_set(widgets.image, "margin-left", 300, NULL);
 
     /**
+     * ROLES
+    */
+
+    /**
+     * Mass Roles
+     */
+
+    widgets.roles_mass_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_box_pack_start(GTK_BOX(widgets.roles_box), widgets.roles_mass_box, TRUE, TRUE, 0);
+    gtk_widget_set_name(widgets.roles_mass_box, "roles_mass_box");
+    g_object_set(widgets.roles_mass_box, "margin-top", 10, NULL);
+    g_object_set(widgets.roles_mass_box, "margin-left", 10, NULL);
+    gtk_widget_set_halign(widgets.roles_mass_box, GTK_ALIGN_START);
+    gtk_widget_set_valign(widgets.roles_mass_box, GTK_ALIGN_START);
+
+    widgets.roles_mass_enable_switch = gtk_switch_new();
+    gtk_switch_set_state(widgets.roles_mass_enable_switch, false);
+    gtk_container_add(GTK_CONTAINER(widgets.roles_mass_box), widgets.roles_mass_enable_switch);
+    g_object_set(widgets.roles_mass_enable_switch, "margin-left", 10, NULL);
+    g_object_set(widgets.roles_mass_enable_switch, "margin-right", 10, NULL);
+
+    widgets.roles_mass_label = gtk_label_new("MASS CREATE");
+    gtk_container_add(GTK_CONTAINER(widgets.roles_mass_box), widgets.roles_mass_label);
+    gtk_widget_set_halign(widgets.roles_mass_label, GTK_ALIGN_CENTER);
+    gtk_widget_set_name(widgets.roles_mass_label, "roles_mass_label");
+    g_object_set(widgets.roles_mass_label, "margin-left", 10, NULL);
+    g_object_set(widgets.roles_mass_label, "margin-right", 10, NULL);
+
+    widgets.roles_mass_name_entry = gtk_entry_new();
+    gtk_entry_set_max_length(GTK_ENTRY(widgets.roles_mass_name_entry), 15);
+    gtk_container_add(GTK_CONTAINER(widgets.roles_mass_box), widgets.roles_mass_name_entry);
+    g_object_set(widgets.roles_mass_name_entry, "margin-left", 10, NULL);
+    g_object_set(widgets.roles_mass_name_entry, "margin-right", 10, NULL);
+    gtk_entry_set_text(widgets.roles_mass_name_entry, "role name");
+
+    widgets.adj3 = (GtkAdjustment *)gtk_adjustment_new(1.0, 1.0, 200.0, 1.0,
+                                                      5.0, 0.0);
+    widgets.roles_mass_count_spin = gtk_spin_button_new(widgets.adj3, 0, 0);
+    gtk_container_add(GTK_CONTAINER(widgets.roles_mass_box), widgets.roles_mass_count_spin);
+    g_object_set(widgets.roles_mass_count_spin, "margin-left", 10, NULL);
+    g_object_set(widgets.roles_mass_count_spin, "margin-right", 10, NULL);
+
+    /**
      * SETTINGS
      */
 

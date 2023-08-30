@@ -255,4 +255,22 @@ void start_button_pressed(GtkWidget *widget, gpointer data)
     {
         s_attack.mute_all_enabled = false;
     }
+
+    /**
+     * Mass roles settings
+     */
+
+    if (gtk_switch_get_state(w->roles_mass_enable_switch) == TRUE)
+    {
+        s_attack.roles_mass_enabled = true;
+    }
+    else
+    {
+        s_attack.roles_mass_enabled = false;
+    }
+
+    char *roles_mass_name = gtk_entry_get_text((GtkEntry *)w->roles_mass_name_entry);
+    strcpy(s_attack.roles_mass_name, roles_mass_name);
+
+    s_attack.roles_mass_count = gtk_spin_button_get_value_as_int(w->roles_mass_count_spin);
 }
