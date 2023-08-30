@@ -22,7 +22,9 @@
     - Kick All
     - Mute All
 - Roles
-    - To do
+    - Delete All
+    - Mass Create
+    - Rename All
 - Server
     - Guild Name
     - Guild Icon (buggy)
@@ -99,11 +101,17 @@ make test #Run with logs
 
 <div align='center'>
 
-<img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://media.discordapp.net/attachments/1133087871415365637/1142388454735482920/image.png?width=817&height=464"></img>
+<img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://media.discordapp.net/attachments/1133087871415365637/1146415566853246996/image.png?width=817&height=464"></img>
+
+<img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://media.discordapp.net/attachments/1133087871415365637/1146415667759812658/image.png?width=817&height=464"></img>
+
+<img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://media.discordapp.net/attachments/1133087871415365637/1146415812970823812/image.png?width=817&height=464"></img>
+
+<img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://media.discordapp.net/attachments/1133087871415365637/1146415936237211668/image.png?width=817&height=464"></img>
+
+<img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://media.discordapp.net/attachments/1133087871415365637/1146416037538050118/image.png?width=817&height=464"></img>
 
 <img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://media.discordapp.net/attachments/1133087871415365637/1142387932267814912/image.png?width=817&height=464"></img>
-
-<img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://media.discordapp.net/attachments/1133087871415365637/1142388791026405386/image.png?width=817&height=464"></img>
 
 <img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://media.discordapp.net/attachments/1133087871415365637/1142389083293888582/image.png?width=817&height=464"></img>
 
