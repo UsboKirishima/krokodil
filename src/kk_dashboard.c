@@ -406,6 +406,14 @@ void activateDashboard(GtkApplication *app,
     g_object_set(widgets.mute_all_label, "margin-left", 33, NULL);
     g_object_set(widgets.mute_all_label, "margin-right", 33, NULL);
 
+    //Users image
+    widgets.image_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_box_pack_start(GTK_BOX(widgets.users_box), widgets.image_box, TRUE, TRUE, 0);
+
+    widgets.image = gtk_image_new_from_file("public/danny.png");
+    gtk_box_pack_start (GTK_BOX (widgets.image_box), widgets.image, TRUE, TRUE, 3);
+    g_object_set(widgets.image, "margin-left", 300, NULL);
+
     /**
      * SETTINGS
      */
