@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+echo -e "[?] Updating the repo..."
+sleep 2
+(git pull)
+(make install)

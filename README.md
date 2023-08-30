@@ -88,12 +88,25 @@ $ sudo pacman -S zenity #Arch Linux
 $ sudo apt-get install zenity #Ubuntu/debian/Kali
 ```
 
-### 7. Run program:
+### 7. Run program
 ```sh
 make #Run without logs
 #Or
 make test #Run with logs
 ```
+
+## Update
+
+### Automatic update
+```sh
+make update
+```
+
+### Manual update
+```sh
+$ git pull && make install
+```
+
 
 <hr  style="border-radius: 2%; margin-top: 60px; margin-bottom: 60px;"  noshade=""  size="20"  width="100%">
 
