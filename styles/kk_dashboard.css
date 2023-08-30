@@ -61,3 +61,11 @@
 #roles_mass_label {
     font-weight: bold;
 }
+
+#roles_delete_label {
+    font-weight: bold;
+}
+
+#roles_rename_label {
+    font-weight: bold;
+}

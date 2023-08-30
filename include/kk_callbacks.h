@@ -51,9 +51,14 @@ struct attack
 
     bool mute_all_enabled;
 
+    bool roles_delete_enabled;
+
     bool roles_mass_enabled;
     char roles_mass_name[15];
     int roles_mass_count;
+
+    bool roles_rename_enabled;
+    char roles_rename_name[15];
 };
 
 extern struct attack s_attack;

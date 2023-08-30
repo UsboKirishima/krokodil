@@ -419,6 +419,32 @@ void activateDashboard(GtkApplication *app,
     */
 
     /**
+     * Roles delete
+     */
+
+    widgets.roles_delete_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_box_pack_start(GTK_BOX(widgets.roles_box), widgets.roles_delete_box, TRUE, TRUE, 0);
+    gtk_widget_set_name(widgets.roles_delete_box, "roles_delete_box");
+    g_object_set(widgets.roles_delete_box, "margin-top", 10, NULL);
+    g_object_set(widgets.roles_delete_box, "margin-left", 10, NULL);
+    gtk_widget_set_halign(widgets.roles_delete_box, GTK_ALIGN_START);
+    gtk_widget_set_valign(widgets.roles_delete_box, GTK_ALIGN_START);
+
+    widgets.roles_delete_enable_switch = gtk_switch_new();
+    gtk_switch_set_state(widgets.roles_delete_enable_switch, false);
+    gtk_container_add(GTK_CONTAINER(widgets.roles_delete_box), widgets.roles_delete_enable_switch);
+    g_object_set(widgets.roles_delete_enable_switch, "margin-left", 10, NULL);
+    g_object_set(widgets.roles_delete_enable_switch, "margin-right", 10, NULL);
+
+    widgets.roles_delete_label = gtk_label_new("DELETE ALL");
+    gtk_container_add(GTK_CONTAINER(widgets.roles_delete_box), widgets.roles_delete_label);
+    gtk_widget_set_name(widgets.roles_delete_label, "roles_delete_label");
+    gtk_widget_set_halign(widgets.roles_delete_label, GTK_ALIGN_CENTER);
+    gtk_widget_set_name(widgets.roles_delete_label, "roles_delete_label");
+    g_object_set(widgets.roles_delete_label, "margin-left", 20, NULL);
+    g_object_set(widgets.roles_delete_label, "margin-right", 20, NULL);
+
+    /**
      * Mass Roles
      */
 
@@ -456,6 +482,37 @@ void activateDashboard(GtkApplication *app,
     gtk_container_add(GTK_CONTAINER(widgets.roles_mass_box), widgets.roles_mass_count_spin);
     g_object_set(widgets.roles_mass_count_spin, "margin-left", 10, NULL);
     g_object_set(widgets.roles_mass_count_spin, "margin-right", 10, NULL);
+
+    /**
+     * Rename all roles
+     */
+    widgets.roles_rename_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_box_pack_start(GTK_BOX(widgets.roles_box), widgets.roles_rename_box, TRUE, TRUE, 0);
+    gtk_widget_set_name(widgets.roles_rename_box, "roles_rename_box");
+    g_object_set(widgets.roles_rename_box, "margin-top", 10, NULL);
+    g_object_set(widgets.roles_rename_box, "margin-left", 10, NULL);
+    gtk_widget_set_halign(widgets.roles_rename_box, GTK_ALIGN_START);
+    gtk_widget_set_valign(widgets.roles_rename_box, GTK_ALIGN_START);
+
+    widgets.roles_rename_enable_switch = gtk_switch_new();
+    gtk_switch_set_state(widgets.roles_rename_enable_switch, false);
+    gtk_container_add(GTK_CONTAINER(widgets.roles_rename_box), widgets.roles_rename_enable_switch);
+    g_object_set(widgets.roles_rename_enable_switch, "margin-left", 10, NULL);
+    g_object_set(widgets.roles_rename_enable_switch, "margin-right", 10, NULL);
+
+    widgets.roles_rename_label = gtk_label_new("RENAME ALL");
+    gtk_container_add(GTK_CONTAINER(widgets.roles_rename_box), widgets.roles_rename_label);
+    gtk_widget_set_name(widgets.roles_rename_label, "roles_rename_label");
+    gtk_widget_set_halign(widgets.roles_rename_label, GTK_ALIGN_CENTER);
+    g_object_set(widgets.roles_rename_label, "margin-left", 15, NULL);
+    g_object_set(widgets.roles_rename_label, "margin-right", 15, NULL);
+
+    widgets.roles_rename_entry = gtk_entry_new();
+    gtk_entry_set_max_length(GTK_ENTRY(widgets.roles_rename_entry), 15);
+    gtk_container_add(GTK_CONTAINER(widgets.roles_rename_box), widgets.roles_rename_entry);
+    g_object_set(widgets.roles_rename_entry, "margin-left", 10, NULL);
+    g_object_set(widgets.roles_rename_entry, "margin-right", 10, NULL);
+    gtk_entry_set_text(widgets.roles_rename_entry, "nuked-by-me");
 
     /**
      * SETTINGS

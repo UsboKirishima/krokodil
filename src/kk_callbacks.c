@@ -273,4 +273,33 @@ void start_button_pressed(GtkWidget *widget, gpointer data)
     strcpy(s_attack.roles_mass_name, roles_mass_name);
 
     s_attack.roles_mass_count = gtk_spin_button_get_value_as_int(w->roles_mass_count_spin);
+
+    /**
+     * Roles delete settings
+     */
+
+    if (gtk_switch_get_state(w->roles_delete_enable_switch) == TRUE)
+    {
+        s_attack.roles_delete_enabled = true;
+    }
+    else
+    {
+        s_attack.roles_delete_enabled = false;
+    }
+
+    /**
+     * Roles rename settings
+     */
+
+    if (gtk_switch_get_state(w->roles_rename_enable_switch) == TRUE)
+    {
+        s_attack.roles_rename_enabled = true;
+    }
+    else
+    {
+        s_attack.roles_rename_enabled = false;
+    }
+
+    char *roles_rename_name = gtk_entry_get_text((GtkEntry *)w->roles_rename_entry);
+    strcpy(s_attack.roles_rename_name, roles_rename_name);
 }
