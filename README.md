@@ -99,7 +99,7 @@ make test #Run with logs
 
 ### Automatic update
 ```sh
-make update
+$ make update
 ```
 
 ### Manual update
