@@ -4,7 +4,7 @@
 #include <kk_dashboard.h>
 #include <kk_id.h>
 
-#include "../config/token.h"
+//#include "../config/token.h"
 
 
 void *client_init(char *token);

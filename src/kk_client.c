@@ -1,5 +1,5 @@
 #include <kk_client.h>
-#include <kk_config.h>
+//#include <kk_config.h>
 #include <kk_dashboard.h>
 #include <kk_callbacks.h>
 #include <kk_ui.h>

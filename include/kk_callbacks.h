@@ -10,7 +10,7 @@
 #include <kk_client.h>
 #include <stdbool.h>
 
-#include "../config/token.h"
+//#include "../config/token.h"
 
 struct attack
 {

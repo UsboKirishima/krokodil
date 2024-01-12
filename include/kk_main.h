@@ -2,7 +2,7 @@
 #define KROKODIL_MAIN_H
 
 #include <gtk/gtk.h>
-#include <kk_config.h>
+//#include <kk_config.h>
 #include <gtk/gtk.h>
 
 #include <pthread.h>

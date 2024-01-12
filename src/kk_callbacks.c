@@ -5,7 +5,7 @@
 #include <kk_callbacks.h>
 #include <string.h>
 
-#include "../config/token.h"
+//#include "../config/token.h"
 
 struct attack s_attack;
 /*
