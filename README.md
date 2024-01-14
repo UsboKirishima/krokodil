@@ -114,18 +114,20 @@ $ git pull && make install
 
 <div align='center'>
 
-<img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://media.discordapp.net/attachments/1133087871415365637/1146415566853246996/image.png?width=817&height=464"></img>
+<img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://raw.githubusercontent.com/UsboKirishima/krokodil/main/assets/image.png"></img>
 
-<img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://media.discordapp.net/attachments/1133087871415365637/1146415667759812658/image.png?width=817&height=464"></img>
+<img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://raw.githubusercontent.com/UsboKirishima/krokodil/main/assets/image1.png"></img>
 
-<img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://media.discordapp.net/attachments/1133087871415365637/1146415812970823812/image.png?width=817&height=464"></img>
+<img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://raw.githubusercontent.com/UsboKirishima/krokodil/main/assets/image2.png"></img>
 
-<img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://media.discordapp.net/attachments/1133087871415365637/1146415936237211668/image.png?width=817&height=464"></img>
+<img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://raw.githubusercontent.com/UsboKirishima/krokodil/main/assets/image4.png"></img>
 
 <img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://media.discordapp.net/attachments/1133087871415365637/1146416037538050118/image.png?width=817&height=464"></img>
 
 <img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://media.discordapp.net/attachments/1133087871415365637/1142387932267814912/image.png?width=817&height=464"></img>
 
 <img style="border-radius: 15px; display: block; margin-left: auto; margin-right: auto; margin-bottom:20px;" width="90%" src="https://media.discordapp.net/attachments/1133087871415365637/1142389083293888582/image.png?width=817&height=464"></img>
+
+<iframe width="1280" height="720" src="https://www.youtube.com/embed/S9QPUFWrSGA" title="[FREE] KROKODIL THE MOST ADVANCED DISCORD NUKER (Advanced GUI) [FREE DOWNLOAD]" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 </div>
